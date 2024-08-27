@@ -1,0 +1,20 @@
+model User {
+  id         String  @id @default(cuid())
+  email      String  @unique
+  name       String?
+  password   String
+  avatarPath String?
+
+  verificationToken String? @default(cuid()) @map("verification_token")
+
+  accesses Access[] @default([PROFILE])
+}
+
+enum Access {
+  PROFILE
+  DASHBOARD
+  USER_CREATE
+  USER_DELETE
+  USER_UPDATE
+  USER_GET
+}
