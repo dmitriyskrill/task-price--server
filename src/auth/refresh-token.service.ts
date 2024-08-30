@@ -3,8 +3,8 @@ import type { Response } from 'express';
 
 @Injectable()
 export class RefreshTokenService {
-  readonly EXPIRE_DAY_REFRESH_TOKEN = 1;
-  readonly REFRESH_TOKEN_NAME = 'refreshToken';
+  readonly EXPIRE_DAY_REFRESH_TOKEN = 1; // TODO вытащаить из env
+  readonly REFRESH_TOKEN_NAME = 'refreshToken'; // TODO вытащаить из env
 
   addRefreshTokenToResponse(res: Response, refreshToken: string) {
     const expiresIn = new Date();
@@ -12,9 +12,9 @@ export class RefreshTokenService {
 
     res.cookie(this.REFRESH_TOKEN_NAME, refreshToken, {
       httpOnly: true,
-      domain: 'localhost',
+      domain: 'localhost', // TODO вытащаить из env
       expires: expiresIn,
-      secure: true, // true if production
+      secure: true, // true if production // TODO вытащаить из env в виде node-env
       sameSite: 'none', // lax if production
     });
   }

@@ -1,0 +1,28 @@
+model TimerSession {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  isCompleted Boolean? @default(false) @map("is_completed")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  rounds TimerRound[]
+
+  @@map("timer_session")
+}
+
+model TimerRound {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  totalSeconds Int      @map("total_seconds")
+  isCompleted  Boolean? @default(false) @map("is_completed")
+
+  timerSession   TimerSession @relation(fields: [timerSessionId], references: [id], onDelete: Cascade)
+  timerSessionId String       @map("timer_session_id")
+
+  @@map("timer_round")
+}

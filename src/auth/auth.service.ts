@@ -37,10 +37,10 @@ export class AuthService {
     }
     const user = await this.userService.create(dto);
 
-    await this.emailService.sendVerification(
-      user.email,
-      `http://localhost:4200/verify-email?token=${user.verificationToken}`, // TODO импортировать значения из ENV
-    );
+    // await this.emailService.sendVerification(
+    //   user.email,
+    //   `http://localhost:4200/verify-email?token=${user.verificationToken}`, // TODO импортировать значения из ENV
+    // );
 
     return this.buildResponseObject(user);
   }

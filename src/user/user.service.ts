@@ -8,20 +8,58 @@ import type { User } from '@prisma/client';
 import { hash } from 'argon2';
 
 import { PrismaService } from 'src/prisma.service';
+import { endOfDay, endOfWeek, startOfDay, startOfWeek, isWithinInterval } from 'date-fns';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {
+  }
 
   async getUsers() {
     return this.prisma.user.findMany({
-      select: {
-        name: true,
-        email: true,
-        id: true,
-        password: false,
+      include: {
+        tasks: true,
       },
     });
+  }
+
+  async getProfile(id: string) {
+    const user = await this.getById(id);
+    if (user) {
+      delete user.password;
+    }
+
+    const userTasks = user.tasks || [];
+    const totalTasks = userTasks.length;
+    const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted);
+
+    const date = new Date();
+
+    const todayStart = startOfDay(date);
+    const todayEnd = endOfDay(date);
+    const weekStart = startOfWeek(date);
+    const weekEnd = endOfWeek(date);
+
+    const todayTasks = userTasks
+      .filter(task => isWithinInterval(
+        task.createdAt, { start: todayStart, end: todayEnd },
+      ));
+
+    const weekTasks = userTasks
+      .filter(task => isWithinInterval(
+        task.createdAt, { start: weekStart, end: weekEnd },
+      ));
+
+
+    return {
+      user,
+      statistics: [
+        { label: 'Total', value: totalTasks },
+        { label: 'Completed tasks', value: completedTasks },
+        { label: 'Today tasks', value: todayTasks },
+        { label: 'Week tasks', value: weekTasks },
+      ],
+    };
   }
 
   async getById(id: string) {
@@ -29,19 +67,23 @@ export class UserService {
       where: {
         id,
       },
+      include: {
+        tasks: true,
+      },
     });
   }
 
   async getByEmail(email: string) {
     try {
-      console.log(email);
       return this.prisma.user.findUnique({
         where: {
           email,
         },
+        include: {
+          tasks: true,
+        },
       });
     } catch (e) {
-      console.log(e);
       return e;
     }
   }
@@ -85,11 +127,15 @@ export class UserService {
   }
 
   async update(id: string, data: Partial<User>) {
-    return this.prisma.user.update({
+    const user = await this.prisma.user.update({
       where: {
         id,
       },
       data,
     });
+    if(user){
+      delete user.password
+    }
+    return user
   }
 }
