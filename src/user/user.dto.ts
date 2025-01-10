@@ -7,6 +7,7 @@ import {
 	Min,
 	MinLength
 } from 'class-validator'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class TimerSettingsDto {
 	@IsOptional()
@@ -29,10 +30,12 @@ export class TimerSettingsDto {
 export class UserDto extends TimerSettingsDto {
 	@IsEmail()
 	@IsOptional()
+  @ApiProperty()
 	email?: string
 
 	@IsString()
 	@IsOptional()
+  @ApiProperty()
 	name?: string
 
 	@IsOptional()
@@ -40,5 +43,6 @@ export class UserDto extends TimerSettingsDto {
 		message: 'Password must be at least 6 characters long'
 	})
 	@IsString()
+  @ApiProperty()
 	password?: string
 }
