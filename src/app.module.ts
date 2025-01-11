@@ -5,8 +5,8 @@ import { AuthModule } from '@/auth/auth.module';
 import { getGoogleRecaptchaConfig } from './config/google-recaptcha.config';
 import { UserModule } from '@/user/user.module';
 import { TaskModule } from '@/task/task.module';
-import { TimeBlockModule } from '@/time-block/time-block.module';
-import { TimerModule } from '@/timer/timer.module';
+import { TaskDayGraphModule } from './task-day-graph/task-day-graph.module';
+import { TaskDateGraphModule } from './task-date-graph/task-date-graph.module';
 
 @Module({
   imports: [
@@ -21,8 +21,8 @@ import { TimerModule } from '@/timer/timer.module';
     AuthModule,
     UserModule,
     TaskModule,
-    TimeBlockModule,
-    TimerModule
+    TaskDayGraphModule,
+    TaskDateGraphModule,
   ],
 })
 export class AppModule {}
