@@ -1,14 +1,48 @@
 import { Injectable } from '@nestjs/common';
-import { TaskDayGraphDto } from './task-day-graph.dto';
+import { TaskDayGraphDto, UpdateTaskDayGraphDto } from './dto/task-day-graph.dto';
 import { PrismaService } from '@/prisma.service';
 
 @Injectable()
 export class TaskDayGraphService {
   constructor(private prisma: PrismaService) {}
-//
-//  async create(taskDayGraphData: TaskDayGraphDto) {}
-//  async update(taskDayGraphData, id: TaskDayGraphDto.id) {}
-  //delete(taskDayGraphData) {}
-  //findAll() {}
-  // findById(id) {} 
+
+  async create(taskDayGraphData: TaskDayGraphDto) {
+    return await this.prisma.taskDayGraph.create({
+      data: {
+        ...taskDayGraphData
+      } 
+    });
+  }
+
+  async update(taskDayGraphData: UpdateTaskDayGraphDto, id: string) {
+    return await this.prisma.taskDayGraph.update({
+      where: {
+        id
+      },
+      data: {
+        ...taskDayGraphData
+      }
+    });
+  }
+
+  async delete(id: string) {
+    return await this.prisma.taskDayGraph.delete({
+      where: {
+        id
+      }
+    });
+  }
+
+  async findAll() {
+    return await this.prisma.taskDayGraph.findMany();
+  }
+
+  async findById(id: string) {
+    return await this.prisma.taskDayGraph.findUnique({
+      where: {
+        id
+      }
+    });
+  } 
+
 }

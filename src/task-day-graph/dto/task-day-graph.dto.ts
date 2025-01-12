@@ -5,7 +5,7 @@ import {
   IsInt,
   IsBoolean,
   IsOptional,
-  IsISO8601,
+  IsISO8601
 } from 'class-validator';
 
 export class TaskDayGraphDto {
@@ -21,6 +21,7 @@ export class TaskDayGraphDto {
 
   @IsInt()
   @ApiProperty()
+  @IsNotEmpty()
   readonly day: number;
 
   @IsString()
@@ -30,6 +31,7 @@ export class TaskDayGraphDto {
 
   @IsBoolean()
   @ApiProperty()
+  @IsNotEmpty()
   readonly isFact: boolean;
 
   @IsString()
@@ -70,6 +72,5 @@ export class UpdateTaskDayGraphDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
   readonly taskId?: string;
 }

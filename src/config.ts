@@ -1,5 +1,5 @@
 import { NestApplication } from "@nestjs/core";
-import { RequestMethod } from "@nestjs/common";
+import { RequestMethod, ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
@@ -24,10 +24,18 @@ const configApp = (app: NestApplication) => {
 
   app.use(cookieParser());
   app.enableCors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3001'],
     credentials: true,
     exposedHeaders: 'set-cookie',
   });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+
 }
 
 export { configApp };
