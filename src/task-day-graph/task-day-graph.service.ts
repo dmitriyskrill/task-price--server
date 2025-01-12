@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { TaskDayGraphDto, UpdateTaskDayGraphDto } from './dto/task-day-graph.dto';
+// import { TaskDayGraphDto, UpdateTaskDayGraphDto } from './dto/task-day-graph.dto';
 import { PrismaService } from '@/prisma.service';
 
 @Injectable()
 export class TaskDayGraphService {
   constructor(private prisma: PrismaService) {}
 
-  async create(taskDayGraphData: TaskDayGraphDto) {
+  async create(taskDayGraphData: any) {
     return await this.prisma.taskDayGraph.create({
       data: {
         ...taskDayGraphData
@@ -14,8 +14,8 @@ export class TaskDayGraphService {
     });
   }
 
-  async update(taskDayGraphData: UpdateTaskDayGraphDto, id: string) {
-    return await this.prisma.taskDayGraph.update({
+  async update(taskDayGraphData: any, id: string) {
+    return this.prisma.taskDayGraph.update({
       where: {
         id
       },
