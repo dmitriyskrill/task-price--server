@@ -59,10 +59,9 @@ export class UpdateTaskDayGraphDto {
   readonly day?: number;
 
   @IsOptional()
-  @IsString()
-  @IsNotEmpty()
+  @IsInt()
   @ApiProperty()
-  readonly amount?: string;
+  readonly amount?: number;
 
   @IsOptional()
   @IsBoolean()
@@ -71,6 +70,5 @@ export class UpdateTaskDayGraphDto {
 
   @IsOptional()
   @IsString()
-  @IsNotEmpty()
   readonly taskId?: string;
 }
