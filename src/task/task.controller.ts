@@ -15,7 +15,7 @@ import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { TaskDto } from './task.dto'
 import { TaskService } from './task.service'
 
-@Controller('user/task')
+@Controller('/task')
 export class TaskController {
 	constructor(private readonly taskService: TaskService) {}
 
@@ -33,9 +33,9 @@ export class TaskController {
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post()
-	@Auth()
-	async create(@Body() dto: TaskDto, @CurrentUser('id') userId: string) {
-		return this.taskService.create(dto, userId)
+//	@Auth()
+	async create(@Body() dto: TaskDto) {	
+		return this.taskService.create(dto)
 	}
 
 	@UsePipes(new ValidationPipe())

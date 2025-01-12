@@ -15,13 +15,13 @@ export class TaskDayGraphController {
 
  @HttpCode(204)
  @Patch('update/:id')
- async update(@Body() dto: UpdateTaskDayGraphDto, @Param() param: IdParamDto) {
+ async update(@Body() dto: UpdateTaskDayGraphDto, @Param() param: any) {
    return await this.taskDayGraphService.update(dto, param.id);
  }
 
  @HttpCode(204)
  @Delete('delete/:id')
- async delete(@Param() param: IdParamDto) {
+ async delete(@Param() param: any) {
    return await this.taskDayGraphService.delete(param.id);
  }
 

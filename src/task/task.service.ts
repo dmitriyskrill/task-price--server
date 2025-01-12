@@ -17,14 +17,18 @@ export class TaskService {
 		})
 	}
 
-	async create(dto: TaskDto, userId: string) {
+	async create(dto: TaskDto) {
+
+    const user = await this.prisma.user.findFirst();
+    console.log(user);
+
 		return this.prisma.task.create({
 			data: {
 				...dto,
 				user: {
 					connect: {
-						id: userId
-					}
+						id: user.id
+					} 
 				}
 			}
 		})

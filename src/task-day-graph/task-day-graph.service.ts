@@ -15,7 +15,7 @@ export class TaskDayGraphService {
   }
 
   async update(taskDayGraphData: any, id: string) {
-    return this.prisma.taskDayGraph.update({
+   return this.prisma.taskDayGraph.update({
       where: {
         id
       },

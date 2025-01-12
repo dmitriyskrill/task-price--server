@@ -27,7 +27,7 @@ export class TaskDayGraphDto {
   @IsInt()
   @IsNotEmpty()
   @ApiProperty()
-  readonly amount: string;
+  readonly amount: number;
 
   @IsBoolean()
   @ApiProperty()
