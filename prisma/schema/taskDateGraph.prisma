@@ -4,7 +4,7 @@ model TaskDateGraph {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   day    Int
-  amount String
+  amount Int
   isFact Boolean
 
   task   Task   @relation(fields: [taskId], references: [id])
