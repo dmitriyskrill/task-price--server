@@ -6,13 +6,11 @@ import {
 	HttpCode,
 	Param,
 	Post,
-	Put,
-	UsePipes,
-	ValidationPipe
+  Patch,
 } from '@nestjs/common'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { TaskDto } from './task.dto'
+import { TaskDto } from './dto/task.dto'
 import { TaskService } from './task.service'
 
 @Controller('/task')
@@ -30,7 +28,6 @@ export class TaskController {
 		return this.taskService.getAll(userId)
 	}
 
-	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post()
 //	@Auth()
@@ -38,9 +35,8 @@ export class TaskController {
 		return this.taskService.create(dto)
 	}
 
-	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
-	@Put(':id')
+	@Patch(':id')
 	@Auth()
 	async update(
 		@Body() dto: TaskDto,

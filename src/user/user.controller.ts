@@ -3,7 +3,7 @@ import { CurrentUser } from '@/auth/decorators/user.decorator';
 import { Body, Controller, Get, HttpCode, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Access } from '@prisma/client';
 import { UserService } from './user.service';
-import { UserDto } from '@/user/user.dto';
+import { UserDto } from './dto/user.dto';
 
 @Controller('user')
 export class UserController {

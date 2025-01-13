@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/prisma.service'
-import { TaskDto } from './task.dto'
+import { TaskDto } from './dto/task.dto'
 
 @Injectable()
 export class TaskService {
 	constructor(private prisma: PrismaService) {}
   
   async getAllTasks() {
-    return this.prisma.task.findMany()
+    return this.prisma.task.findMany(
+      {
+        include: {
+          taskDayGraphs: true,
+          taskDateGraphs: true
+        }
+      }
+    )
   }
+
 	async getAll(userId: string) {
 		return this.prisma.task.findMany({
 			where: {
@@ -18,10 +26,8 @@ export class TaskService {
 	}
 
 	async create(dto: TaskDto) {
-
     const user = await this.prisma.user.findFirst();
-    console.log(user);
-
+    
 		return this.prisma.task.create({
 			data: {
 				...dto,

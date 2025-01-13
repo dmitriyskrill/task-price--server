@@ -7,34 +7,35 @@ import { IdParamDto } from './dto/id.params.dto';
 export class TaskDayGraphController {
  constructor(private readonly taskDayGraphService: TaskDayGraphService) {}
 
+ @Post()
  @HttpCode(200) 
- @Post('create')
  async create(@Body() dto: TaskDayGraphDto) {
    return await this.taskDayGraphService.create(dto);
  }
 
+ @Patch()
  @HttpCode(204)
- @Patch('update/:id')
- async update(@Body() dto: UpdateTaskDayGraphDto, @Param() param: any) {
+ async update(@Body() dto: UpdateTaskDayGraphDto, @Param() param: IdParamDto) {
    return await this.taskDayGraphService.update(dto, param.id);
  }
 
+ @Delete()
  @HttpCode(204)
- @Delete('delete/:id')
  async delete(@Param() param: any) {
    return await this.taskDayGraphService.delete(param.id);
  }
 
+ @Get()
  @HttpCode(200)
- @Get('list')
  async findAll() {
    return await this.taskDayGraphService.findAll();
  }
 
- @HttpCode(200)
  @Get(':id')
+ @HttpCode(200)
  async findById(@Param() param: IdParamDto) {
    return await this.taskDayGraphService.findById(param.id);
  }
+
 
 }
