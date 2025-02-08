@@ -1,0 +1,11 @@
+model ExpenseDayGraph {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  day       DateTime
+  expense   Expense  @relation(fields: [expenseId], references: [id])
+  expenseId String
+
+  @@map("expense_day_graph")
+}

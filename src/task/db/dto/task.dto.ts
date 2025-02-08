@@ -21,3 +21,20 @@ export class TaskDto {
 	createdAt?: string
 
 }
+
+export class UpdateTaskDto {
+	@IsOptional()
+	@IsString()
+	@ApiProperty()
+	name?: string
+
+	@IsOptional()
+	@IsString()
+	@ApiProperty()
+	shortName?: string
+
+	@IsOptional()
+	@IsBoolean()
+	@ApiProperty()
+	isCompleted?: boolean
+}

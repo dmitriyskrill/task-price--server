@@ -18,6 +18,14 @@ const configApp = (app: NestApplication) => {
     .setTitle('Financial Balance Helper')
     .setDescription('The Financial Balance Helper API description')
     .setVersion('1.0')
+     .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'access-token', 
+    )
     .build(); 
   const documentFactory = () => SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api-docs', app, documentFactory());

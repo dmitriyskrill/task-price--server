@@ -1,0 +1,20 @@
+model Expense {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name        String
+  shortName   String
+  isCompleted Boolean
+
+  userId String
+
+  isTrash           Boolean
+  isPlan            Boolean
+  taskId            String
+  task              Task?              @relation(fields: [taskId], references: [id])
+  ExpenseDateGraphs ExpenseDateGraph[]
+  ExpenseDayGraphs  ExpenseDayGraph[]
+
+  @@map("expenses")
+}
