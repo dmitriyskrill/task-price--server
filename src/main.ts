@@ -12,4 +12,4 @@ const bootstrap = async () => {
   Logger.log(`Server started on port ${process.env.PORT || 4200}`, 'Bootstrap');
 
 }
-bootstrap
+bootstrap()

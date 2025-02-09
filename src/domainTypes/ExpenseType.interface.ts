@@ -1,23 +1,23 @@
-import type { AmountTypesInTotalAmountT } from './AmountTypesInTotalAmountT'
-import type { UnitI } from './UnitI'
-import type { ElementStatusI } from './ElementStatusI'
+import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
+import type { IUnit } from './Unit.interface'
+import type { IElementStatus } from './ElementStatus.interface'
 
-export interface ExpenseTypeI {
+export interface IExpenseType {
 
 	name: string
 	shortName: string
 
   /* Ед. измерения по умолчанию */
-	defaultUnit?: UnitI
+	defaultUnit?: IUnit
   /* Допустимые ед. измерения */
-	admissibleUnits?: UnitI[]
+	admissibleUnits?: IUnit[]
 
-	defaultElementStatus?: ElementStatusI // Todo проработать логику определение и изменения статуса элементов в условиях бесконечной вложенности
+	defaultElementStatus?: IElementStatus // Todo проработать логику определение и изменения статуса элементов в условиях бесконечной вложенности
 
   /* Источники для общего количества (План) */
-	defaultAmountTypesInTotalAmountPlan?: AmountTypesInTotalAmountT[]
+	defaultAmountTypesInTotalAmountPlan?: TAmountTypesInTotalAmount[]
 	/* Источники для общего количества (Факт) */
-	defaultAmountTypesInTotalAmountFact?: AmountTypesInTotalAmountT[]
+	defaultAmountTypesInTotalAmountFact?: TAmountTypesInTotalAmount[]
 
 	sort?: number
 
