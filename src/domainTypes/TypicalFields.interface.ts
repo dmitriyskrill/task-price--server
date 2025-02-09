@@ -45,6 +45,6 @@ model YourModel {
 sql
 Копировать
 Редактировать
-SHOW timezone;
+SHOW timezone
 -- Должен возвращать 'UTC' или вашу предпочитаемую временную зону
 */

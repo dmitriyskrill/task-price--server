@@ -1,4 +1,3 @@
-import type { IAdmissibleStatus } from './AdmissibleStatus.interface'
 import type { ITableColumnGroup } from './TableColumnGroup.interface'
 
 export interface IElementStatus {
@@ -12,7 +11,7 @@ export interface IElementStatus {
 	isShowPlanElementByDefault?: boolean
 	isShowFactElementByDefault?: boolean
 	isCreateFactElementAfterSelectedThisStatus?: boolean
-	admissibleStatuses?: IAdmissibleStatus[]
+	admissibleStatuses?: IElementStatus[]
 	lkTableColumnGroup: ITableColumnGroup
 	admissibleLkTableColumnGroups?: ITableColumnGroup[]
 	isLkExpensePlanCreateForbidden?: boolean
