@@ -17,7 +17,7 @@ interface UnitI {
 
 
 
-interface ExpenseDayGraphI {
+interface IExpenseDayGraph {
 	name?: string
 	endpoint?: string
 	creator: string

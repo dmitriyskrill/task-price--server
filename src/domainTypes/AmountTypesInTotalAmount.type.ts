@@ -4,5 +4,5 @@ export const AmountTypesInTotalAmountTypes = {
 	Month: 'amount'
 } as const
 
-export type AmountTypesInTotalAmountT =
+export type TAmountTypesInTotalAmount =
 	(typeof AmountTypesInTotalAmountTypes)[keyof typeof AmountTypesInTotalAmountTypes]

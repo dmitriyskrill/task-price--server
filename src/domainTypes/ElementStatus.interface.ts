@@ -1,7 +1,7 @@
-import type { AdmissibleStatusI } from './AdmissibleStatusI'
-import type { TableColumnGroupI } from './TableColumnGroupI'
+import type { IAdmissibleStatus } from './AdmissibleStatus.interface'
+import type { ITableColumnGroup } from './TableColumnGroup.interface'
 
-export interface ElementStatusI {
+export interface IElementStatus {
 	name: string
 	shortName: string
 	isShowMenuBtnInLkPlanExpenseRow?: boolean
@@ -12,9 +12,9 @@ export interface ElementStatusI {
 	isShowPlanElementByDefault?: boolean
 	isShowFactElementByDefault?: boolean
 	isCreateFactElementAfterSelectedThisStatus?: boolean
-	admissibleStatuses?: AdmissibleStatusI[]
-	lkTableColumnGroup: TableColumnGroupI
-	admissibleLkTableColumnGroups?: TableColumnGroupI[]
+	admissibleStatuses?: IAdmissibleStatus[]
+	lkTableColumnGroup: ITableColumnGroup
+	admissibleLkTableColumnGroups?: ITableColumnGroup[]
 	isLkExpensePlanCreateForbidden?: boolean
 	isLkExpensePlanUpdateForbidden?: boolean
 	isLkExpensePlanDeleteForbidden?: boolean

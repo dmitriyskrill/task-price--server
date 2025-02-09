@@ -7,11 +7,11 @@ import { IdParamDto } from './dto/id.params.dto';
 export class TaskDateGraphController {
  constructor(private readonly taskDateGraphService: TaskDateGraphService) {}
 
- @Post()
- @HttpCode(200) 
- async create(@Body() dto: TaskDateGraphDto) {
-   return await this.taskDateGraphService.create(dto);
- }
+ // @Post()
+ // @HttpCode(200)
+ // async create(@Body() dto: TaskDateGraphDto) {
+ //   return await this.taskDateGraphService.create(dto);
+ // }
 
  @Patch()
  @HttpCode(204)
@@ -28,13 +28,13 @@ export class TaskDateGraphController {
  @Get()
  @HttpCode(200)
  async findAll() {
-   return await this.taskDateGraphService.findAll();
+   return await this.taskDateGraphService.getAll();
  }
 
  @Get(':id')
  @HttpCode(200)
  async findById(@Param() param: IdParamDto) {
-   return await this.taskDateGraphService.findById(param.id);
+   return await this.taskDateGraphService.getById(param.id);
  }
 }
 

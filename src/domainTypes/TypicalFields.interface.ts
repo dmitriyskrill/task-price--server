@@ -1,6 +1,6 @@
-import { UserI } from './UserI'
+import { IUser } from './User.interface'
 
-export interface TypicalFieldsI {
+export interface ITypicalFields {
 	id: string
 	name: string
 
@@ -11,10 +11,10 @@ export interface TypicalFieldsI {
 	// Но понять ключевые моменты когда и кем создано и как давно обновлялась для
 	// пользователя будет полезна
 	createdAt: Date
-	createdBy: UserI
+	createdBy: IUser
 
 	updatedAt: Date
-	updatedBy: UserI
+	updatedBy: IUser
 
 	// Не всегда можно разрешить пользователю удалять элементы,
 	// но убрать их из визуального отображения полезно

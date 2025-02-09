@@ -1,20 +1,20 @@
-import type { TableColumnGroupI } from './TableColumnGroupI'
-import type { UserI } from './UserI'
-import type { ExpenseTypeI } from './ExpenseTypeI'
-import type { AmountTypesInTotalAmountT } from './AmountTypesInTotalAmountT'
+import type { ITableColumnGroup } from './TableColumnGroup.interface'
+import type { IUser } from './User.interface'
+import type { IExpenseType } from './ExpenseType.interface'
+import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
 
-export interface ExpenseI {
+export interface IExpense {
 	id: string
 	name?: string
 	sort: number
-	creator: UserI
+	creator: IUser
 	createdDate: Date
-	lastModifier?: UserI
+	lastModifier?: IUser
 	lastModifiedDate?: Date
 	isActive?: boolean
 
-	expenseType: ExpenseTypeI
-	amountTypesInTotalAmount?: AmountTypesInTotalAmountT[]
+	expenseType: IExpenseType
+	amountTypesInTotalAmount?: TAmountTypesInTotalAmount[]
 	amount?: number
 	dayGraphAdditionalFactor?: number
 	withAnDayGraphAdditionalFactor?: boolean
@@ -25,7 +25,7 @@ export interface ExpenseI {
 	billsNumber?: number
 	deliveryDaysNumber?: number
 	note?: string
-	planLkExpense?: ExpenseI
+	planLkExpense?: IExpense
 	lkTask?: TaskI
 	isPlan: boolean
 	isFixedFact: boolean
