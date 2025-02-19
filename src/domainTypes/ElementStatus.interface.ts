@@ -3,51 +3,51 @@ import type { ITableColumnGroup } from './TableColumnGroup.interface'
 export interface IElementStatus {
 	name: string
 	shortName: string
-	isShowMenuBtnInLkPlanExpenseRow?: boolean
-	isShowDeleteBtnInLkTaskRow?: boolean
-	isShowOpenLikeMainBtnInLkTaskRow?: boolean
-	isShowLkExpenseCreateMenuAtControlHead?: boolean
-	isShowLkTaskCreateMenuAtControlHead?: boolean
+	isShowMenuBtnInPlanExpenseRow?: boolean
+	isShowDeleteBtnInTaskRow?: boolean
+	isShowOpenLikeMainBtnInTaskRow?: boolean
+	isShowExpenseCreateMenuAtControlHead?: boolean
+	isShowTaskCreateMenuAtControlHead?: boolean
 	isShowPlanElementByDefault?: boolean
 	isShowFactElementByDefault?: boolean
 	isCreateFactElementAfterSelectedThisStatus?: boolean
 	admissibleStatuses?: IElementStatus[]
-	lkTableColumnGroup: ITableColumnGroup
-	admissibleLkTableColumnGroups?: ITableColumnGroup[]
-	isLkExpensePlanCreateForbidden?: boolean
-	isLkExpensePlanUpdateForbidden?: boolean
-	isLkExpensePlanDeleteForbidden?: boolean
-	isLkExpenseFactCreateForbidden?: boolean
-	isLkExpenseFactUpdateForbidden?: boolean
-	isLkExpenseFactDeleteForbidden?: boolean
-	isLkExpenseDayGraphPlanCreateForbidden?: boolean
-	isLkExpenseDayGraphPlanUpdateForbidden?: boolean
-	isLkExpenseDayGraphPlanDeleteForbidden?: boolean
-	isLkExpenseDayGraphFactCreateForbidden?: boolean
-	isLkExpenseDayGraphFactUpdateForbidden?: boolean
-	isLkExpenseDayGraphFactDeleteForbidden?: boolean
-	isLkExpenseDateGraphPlanCreateForbidden?: boolean
-	isLkExpenseDateGraphPlanUpdateForbidden?: boolean
-	isLkExpenseDateGraphPlanDeleteForbidden?: boolean
-	isLkExpenseDateGraphFactCreateForbidden?: boolean
-	isLkExpenseDateGraphFactUpdateForbidden?: boolean
-	isLkExpenseDateGraphFactDeleteForbidden?: boolean
-	isLkTaskPlanCreateForbidden?: boolean
-	isLkTaskPlanUpdateForbidden?: boolean
-	isLkTaskPlanDeleteForbidden?: boolean
-	isLkTaskFactCreateForbidden?: boolean
-	isLkTaskFactUpdateForbidden?: boolean
-	isLkTaskFactDeleteForbidden?: boolean
-	isLkTaskDayGraphPlanCreateForbidden?: boolean
-	isLkTaskDayGraphPlanUpdateForbidden?: boolean
-	isLkTaskDayGraphPlanDeleteForbidden?: boolean
-	isLkTaskDayGraphFactCreateForbidden?: boolean
-	isLkTaskDayGraphFactUpdateForbidden?: boolean
-	isLkTaskDayGraphFactDeleteForbidden?: boolean
-	isLkTaskDateGraphPlanCreateForbidden?: boolean
-	isLkTaskDateGraphPlanUpdateForbidden?: boolean
-	isLkTaskDateGraphPlanDeleteForbidden?: boolean
-	isLkTaskDateGraphFactCreateForbidden?: boolean
-	isLkTaskDateGraphFactUpdateForbidden?: boolean
-	isLkTaskDateGraphFactDeleteForbidden?: boolean
+	tableColumnGroup: ITableColumnGroup
+	admissibleTableColumnGroups?: ITableColumnGroup[]
+	isExpensePlanCreateForbidden?: boolean
+	isExpensePlanUpdateForbidden?: boolean
+	isExpensePlanDeleteForbidden?: boolean
+	isExpenseFactCreateForbidden?: boolean
+	isExpenseFactUpdateForbidden?: boolean
+	isExpenseFactDeleteForbidden?: boolean
+	isExpenseDayGraphPlanCreateForbidden?: boolean
+	isExpenseDayGraphPlanUpdateForbidden?: boolean
+	isExpenseDayGraphPlanDeleteForbidden?: boolean
+	isExpenseDayGraphFactCreateForbidden?: boolean
+	isExpenseDayGraphFactUpdateForbidden?: boolean
+	isExpenseDayGraphFactDeleteForbidden?: boolean
+	isExpenseDateGraphPlanCreateForbidden?: boolean
+	isExpenseDateGraphPlanUpdateForbidden?: boolean
+	isExpenseDateGraphPlanDeleteForbidden?: boolean
+	isExpenseDateGraphFactCreateForbidden?: boolean
+	isExpenseDateGraphFactUpdateForbidden?: boolean
+	isExpenseDateGraphFactDeleteForbidden?: boolean
+	isTaskPlanCreateForbidden?: boolean
+	isTaskPlanUpdateForbidden?: boolean
+	isTaskPlanDeleteForbidden?: boolean
+	isTaskFactCreateForbidden?: boolean
+	isTaskFactUpdateForbidden?: boolean
+	isTaskFactDeleteForbidden?: boolean
+	isTaskDayGraphPlanCreateForbidden?: boolean
+	isTaskDayGraphPlanUpdateForbidden?: boolean
+	isTaskDayGraphPlanDeleteForbidden?: boolean
+	isTaskDayGraphFactCreateForbidden?: boolean
+	isTaskDayGraphFactUpdateForbidden?: boolean
+	isTaskDayGraphFactDeleteForbidden?: boolean
+	isTaskDateGraphPlanCreateForbidden?: boolean
+	isTaskDateGraphPlanUpdateForbidden?: boolean
+	isTaskDateGraphPlanDeleteForbidden?: boolean
+	isTaskDateGraphFactCreateForbidden?: boolean
+	isTaskDateGraphFactUpdateForbidden?: boolean
+	isTaskDateGraphFactDeleteForbidden?: boolean
 }

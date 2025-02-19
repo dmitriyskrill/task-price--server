@@ -19,7 +19,7 @@ export interface ITypicalFields {
 	// Не всегда можно разрешить пользователю удалять элементы,
 	// но убрать их из визуального отображения полезно
 	isTrash: boolean
-	dateAddingToTrash: boolean
+	dateAddingToTrash: Date
 }
 
 

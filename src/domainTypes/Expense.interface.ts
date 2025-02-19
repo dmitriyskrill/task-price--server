@@ -1,15 +1,14 @@
-import type { ITableColumnGroup } from './TableColumnGroup.interface'
 import type { IUnit } from './Unit.interface'
 import type { IExpenseType } from './ExpenseType.interface'
 import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
-import { ITypicalFields } from './TypicalFields.interface'
-import { ITask } from './Task.interface'
-import { IElementStatus } from './ElementStatus.interface'
-import { IUser } from './User.interface'
-import { IExpenseDayGraph } from './ExpenseDayGraph.interface'
-import { IExpenseDateGraph } from './ExpenseDateGraph.interface'
+import type { ITypicalFields } from './TypicalFields.interface'
+import type { ITask } from './Task.interface'
+import type { IElementStatus } from './ElementStatus.interface'
+import type { IUser } from './User.interface'
+import type { IExpenseDayGraph } from './ExpenseDayGraph.interface'
+import type { IExpenseDateGraph } from './ExpenseDateGraph.interface'
 
-export interface IExpense extends ITypicalFields{
+export interface IExpense extends ITypicalFields {
 	isActive?: boolean
 
 	price?: number
@@ -32,11 +31,10 @@ export interface IExpense extends ITypicalFields{
 	isPlan: boolean
 	isFixedFact: boolean
 	elementStatus?: IElementStatus
-	owner?: IUser
+	owner: IUser
 
 	rowHeight?: number
 	rowHeightUnit?: string
-
 
 	// Вычисляемые поля...
 	expenseDateGraphList: IExpenseDateGraph[] // Тут получается циклическая зависимость
