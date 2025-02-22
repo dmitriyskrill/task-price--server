@@ -5,10 +5,9 @@ import {
 	UpdateTaskDateGraphDto
 } from '@/task/task-date-graph/dto/task-date-graph.dto'
 import { Prisma } from '@prisma/client'
-import { ITaskDateGraphRepository } from '@/task/task-date-graph/db/repository/task-date-graph.repository.interface'
 
 @Injectable()
-export class TaskDateGraphRepository implements ITaskDateGraphRepository {
+export class TaskDateGraphRepository  {
 	constructor(private prisma: PrismaService) {}
 
 	async create(taskDateGraphData: TaskDateGraphDto, taskId: string) {

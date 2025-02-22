@@ -3,7 +3,7 @@ import {
 	TaskDateGraphDto,
 	UpdateTaskDateGraphDto
 } from './dto/task-date-graph.dto'
-import { TaskDateGraphRepository } from '@/task/task-date-graph/db/repository/task-date-graph.repository'
+import { TaskDateGraphRepository } from '@/task/task-date-graph/db/task-date-graph.repository'
 
 @Injectable()
 export class TaskDateGraphService {
