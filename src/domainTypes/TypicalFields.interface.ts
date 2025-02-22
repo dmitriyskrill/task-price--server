@@ -18,7 +18,7 @@ export interface ITypicalFields {
 	// Не всегда можно разрешить пользователю удалять элементы,
 	// но убрать их из визуального отображения полезно
 	isTrash: boolean
-	dateAddingToTrash: boolean
+	dateAddingToTrash: Date
 }
 
 
@@ -44,6 +44,6 @@ model YourModel {
 sql
 Копировать
 Редактировать
-SHOW timezone;
+SHOW timezone
 -- Должен возвращать 'UTC' или вашу предпочитаемую временную зону
 */

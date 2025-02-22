@@ -15,7 +15,7 @@ export class RefreshTokenService {
       domain: 'localhost', // TODO вытащаить из env
       expires: expiresIn,
       secure: true, // true if production // TODO вытащаить из env в виде node-env
-      sameSite: 'none', // lax if production
+      sameSite: 'lax', // lax if production, or http
     });
   }
 
@@ -25,7 +25,7 @@ export class RefreshTokenService {
       domain: 'localhost',
       expires: new Date(0),
       secure: true, // true if production
-      sameSite: 'none', // lax if production
+      sameSite: 'lax', // lax if production, or http
     });
   }
 }
