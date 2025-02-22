@@ -2,7 +2,8 @@ import { NestApplication } from "@nestjs/core";
 import { RequestMethod, ValidationPipe } from "@nestjs/common";
 import * as cookieParser from "cookie-parser";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 const configApp = (app: NestApplication) => {
     app.setGlobalPrefix('api', {
     exclude: [

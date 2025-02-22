@@ -22,7 +22,7 @@ export class TaskDateGraphDto {
   @IsInt()
   @ApiProperty()
   @IsNotEmpty()
-  readonly date: number;
+  readonly date: Date;
 
   @IsInt()
   @IsNotEmpty()
@@ -34,10 +34,6 @@ export class TaskDateGraphDto {
   @IsNotEmpty()
   readonly isFact: boolean;
 
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  readonly taskId: string;
 }
 
 
@@ -56,7 +52,7 @@ export class UpdateTaskDateGraphDto {
   @IsOptional()
   @IsInt()
   @ApiProperty()
-  readonly date?: number;
+  readonly date?: Date;
 
   @IsOptional()
   @IsInt()
@@ -68,7 +64,4 @@ export class UpdateTaskDateGraphDto {
   @ApiProperty()
   readonly isFact?: boolean;
 
-  @IsOptional()
-  @IsString()
-  readonly taskId?: string;
 }
