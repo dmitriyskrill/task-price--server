@@ -1,0 +1,24 @@
+
+
+
+
+Правила написания
+- camelCase
+- модули в единственном числе (expense, task)
+
+
+-У модулей такой шаблон:
+src/task
+├── db
+    └── task.repository.ts - реализация репозитория
+    ├── Task.model.ts - доменная модель
+├── task.controller.ts
+├── task.module.ts
+└── task.service.ts
+│── dto -  dto которое использует уровень инфраструктуры
+ └── task.dto.ts
+
+-REST API:
+-get запросы отдают массив и принимают filter
+-getById - принимает id и отдает один элемент
+-patch - принимает { filter, data )
