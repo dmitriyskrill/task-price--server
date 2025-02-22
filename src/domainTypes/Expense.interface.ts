@@ -1,6 +1,6 @@
 import type { IUnit } from './Unit.interface'
 import type { IExpenseType } from './ExpenseType.interface'
-import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
+import type { TAmountTypeInTotalAmount } from './AmountTypesInTotalAmount.type'
 import type { ITypicalFields } from './TypicalFields.interface'
 import type { ITask } from './Task.interface'
 import type { IElementStatus } from './ElementStatus.interface'
@@ -15,7 +15,7 @@ export interface IExpense extends ITypicalFields {
 	amount?: number
 
 	expenseType: IExpenseType
-	amountTypesInTotalAmount?: TAmountTypesInTotalAmount[]
+	amountTypesInTotalAmount?: TAmountTypeInTotalAmount[]
 
 	dayGraphAdditionalFactor?: number
 	withAnDayGraphAdditionalFactor?: boolean

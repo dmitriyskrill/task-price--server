@@ -1,5 +1,6 @@
 import { ITypicalFields } from '@/domainTypes/TypicalFields.interface'
 import { IExpenseType } from '@/domainTypes/ExpenseType.interface'
+import { ITask } from '@/domainTypes/Task.interface'
 
 /* Начисления на типы расходов
 
@@ -12,7 +13,7 @@ export interface IExpenseTypeAccrual extends ITypicalFields{
 	endpoint?: string
 	expenseType?: IExpenseType
 	amount?: number
-	task: string
+	task: ITask
 	isPlan?: boolean
 }
 

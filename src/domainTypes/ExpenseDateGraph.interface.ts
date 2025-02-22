@@ -8,7 +8,7 @@ export interface IExpenseDateGraph extends ITypicalFields {
 	amount: number
 	expense: IExpense
 	elementStatus?: IElementStatus
-	responsible?: IUser
+	owner?: IUser
 
 	// Вспомогательное поле которые в себе хранит название сущности. Применяется для управления стилями при проказе на фронте и при распределении в данных
 	endpoint?: string

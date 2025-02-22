@@ -1,7 +1,7 @@
 import { ITypicalFields } from './TypicalFields.interface'
 import { IUser } from './User.interface'
 import { IUnit } from './Unit.interface'
-import { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
+import { TAmountTypeInTotalAmount } from './AmountTypesInTotalAmount.type'
 import { IElementStatus } from './ElementStatus.interface'
 import { ITaskType } from './TaskType.interface'
 
@@ -12,7 +12,7 @@ export interface ITask extends ITypicalFields {
 	tenderNumber?: string
 	approvalDate?: Date
 	transferDate?: Date
-	amountTypesInTotalAmount?: TAmountTypesInTotalAmount[] // Default: ['days']
+	amountTypeInTotalAmountList?: TAmountTypeInTotalAmount[] // Default: ['days']
 	elementStatus?: IElementStatus // ID статуса элемента
 	taskType: ITaskType // ID типа задачи (обязательно)
 

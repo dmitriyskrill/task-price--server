@@ -2,6 +2,7 @@ import { ITypicalFields } from './TypicalFields.interface'
 import { IUnit } from './Unit.interface'
 import { IExpenseType } from './ExpenseType.interface'
 import { IElementStatus } from './ElementStatus.interface'
+import { TAmountTypeInTotalAmount } from '@/domainTypes/AmountTypesInTotalAmount.type'
 
 export interface ITaskType extends ITypicalFields {
 	shortName: string // Обязательно
@@ -54,14 +55,14 @@ export interface ITaskType extends ITypicalFields {
 	defaultVatPercent?: number // Default: 0
 
 	/* Значение начислений по умолчанию */
-	defaultExpenseTypeAccruals?: {
+	defaultExpenseTypeAccrualList?: {
 		expenseType: IExpenseType
 		amount?: number
 		isPlan?: boolean
 		name: string
 	}[]
 	/* Источники для общего количества */
-	defaultAmountTypesInTotalAmount?: string[]
+	defaultAmountTypesInTotalAmount?: TAmountTypeInTotalAmount[]
 
 	/* Кнопки в управлении */
 	taskCellControlButtons?: {

@@ -1,4 +1,4 @@
-import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
+import type { TAmountTypeInTotalAmount } from './AmountTypesInTotalAmount.type'
 import type { IUnit } from './Unit.interface'
 import type { IElementStatus } from './ElementStatus.interface'
 
@@ -15,9 +15,9 @@ export interface IExpenseType {
 	defaultElementStatus?: IElementStatus // Todo проработать логику определение и изменения статуса элементов в условиях бесконечной вложенности
 
   /* Источники для общего количества (План) */
-	defaultAmountTypesInTotalAmountPlan?: TAmountTypesInTotalAmount[]
+	defaultAmountTypesInTotalAmountPlan?: TAmountTypeInTotalAmount[]
 	/* Источники для общего количества (Факт) */
-	defaultAmountTypesInTotalAmountFact?: TAmountTypesInTotalAmount[]
+	defaultAmountTypesInTotalAmountFact?: TAmountTypeInTotalAmount[]
 
 	sort?: number
 
