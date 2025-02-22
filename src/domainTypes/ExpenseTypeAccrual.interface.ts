@@ -12,7 +12,7 @@ export interface IExpenseTypeAccrual extends ITypicalFields{
 	endpoint?: string
 	expenseType?: IExpenseType
 	amount?: number
-	lkTask: string
+	task: string
 	isPlan?: boolean
 }
 

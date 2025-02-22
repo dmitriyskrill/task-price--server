@@ -14,6 +14,6 @@
 interface ExpenseInfoI {
 	name: string
 	showInProfitInfo?: boolean
-	lkExpenseTypes?: string[]
+	expenseTypes?: string[]
 	afterPosition?: string
 }

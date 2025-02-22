@@ -1,12 +1,12 @@
 import { ITypicalFields } from './TypicalFields.interface'
 import { IUser } from './User.interface'
 
-export interface LkTaskDateGraph extends ITypicalFields{
+export interface taskDateGraph extends ITypicalFields{
 	endpoint?: string
 
 	day: number 
 	amount: number 
-	lkTask: string
+	task: string
 	isFact?: boolean 
 	owner: IUser 
 	

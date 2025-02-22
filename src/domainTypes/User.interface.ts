@@ -1,5 +1,12 @@
+import { ITypicalFields } from '@/domainTypes/TypicalFields.interface'
 
+export interface IUser extends ITypicalFields {
+	surname: string
+	patronymic: string
 
-export interface IUser {
-	id: string
+	email: string
+	login: string
+	password: string
+	verificationToken: string
+	avatarPath: string
 }

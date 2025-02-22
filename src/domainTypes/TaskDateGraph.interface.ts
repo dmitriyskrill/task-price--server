@@ -3,7 +3,7 @@ import { ITask } from './Task.interface'
 import { IUser } from './User.interface'
 
 export interface ITaskDateGraph extends ITypicalFields {
-	endpoint?: string // Default: 'lkTaskDateGraph'
+	endpoint?: string // Default: 'taskDateGraph'
 	date: Date
 	amount: number
 	task: ITask

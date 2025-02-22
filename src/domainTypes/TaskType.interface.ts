@@ -14,7 +14,7 @@ export interface ITaskType extends ITypicalFields {
 	childTaskTypes?: ITaskType[]
 
 	/* Может содержать затраты */
-	isCanContainLkExpense?: boolean
+	isCanContainExpense?: boolean
 	/* Показывать сводную информацию по графикам */
 	isShowGraphInfo?: boolean
 
@@ -31,7 +31,7 @@ export interface ITaskType extends ITypicalFields {
 	/* Статус, указанный по умолчанию в типе задачи, является приоритетным
 	  TODO понять что значит
 	*/
-	isPriorityDefaultLkElementStatus?: boolean
+	isPriorityDefaultElementStatus?: boolean
 
 	/* Множитель для графиков по умолчанию */
 	defaultAdditionalFactor?: number
