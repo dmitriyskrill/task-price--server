@@ -8,7 +8,7 @@ import { hash } from 'argon2'
 
 
 @Injectable()
-export class BlogRepository {
+export class UserRepository {
 	constructor(private prisma: PrismaService) {}
 	async getUsers() {
 		return this.prisma.user.findMany({

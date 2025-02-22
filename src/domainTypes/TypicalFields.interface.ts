@@ -1,5 +1,4 @@
 import { IUser } from './User.interface'
-
 export interface ITypicalFields {
 	id: string
 	name: string

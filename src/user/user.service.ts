@@ -4,138 +4,39 @@ import {
   IGoogleProfile,
 } from '@/auth/social-media/social-media-auth.types';
 import { Injectable } from '@nestjs/common';
-import type { User } from '@prisma/client';
-import { hash } from 'argon2';
-
-import { PrismaService } from 'src/prisma.service';
-import { endOfDay, endOfWeek, startOfDay, startOfWeek, isWithinInterval } from 'date-fns';
+import { UserRepository} from '@/user/db/repository/user.repository'
+import { UserModel } from '@/user/db/User.model'
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {
+  constructor(private userRepository: UserRepository) {
   }
 
-  async getUsers() {
-    return this.prisma.user.findMany({
-      include: {
-        tasks: true,
-      },
-    });
+  async getUsers(): Promise<UserModel[]> {
+    return this.userRepository.getUsers();
   }
 
   async getProfile(id: string) {
-    const user = await this.getById(id);
-    if (user) {
-      delete user.password;
-    }
-
-    const userTasks = user.tasks || [];
-    const totalTasks = userTasks.length;
-    const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted);
-
-    const date = new Date();
-
-    const todayStart = startOfDay(date);
-    const todayEnd = endOfDay(date);
-    const weekStart = startOfWeek(date);
-    const weekEnd = endOfWeek(date);
-
-    const todayTasks = userTasks
-      .filter(task => isWithinInterval(
-        task.createdAt, { start: todayStart, end: todayEnd },
-      ));
-
-    const weekTasks = userTasks
-      .filter(task => isWithinInterval(
-        task.createdAt, { start: weekStart, end: weekEnd },
-      ));
-
-
-    return {
-      user,
-      statistics: [
-        { label: 'Total', value: totalTasks },
-        { label: 'Completed tasks', value: completedTasks },
-        { label: 'Today tasks', value: todayTasks },
-        { label: 'Week tasks', value: weekTasks },
-      ],
-    };
+    return this.userRepository.getProfile(id);
   }
 
   async getById(id: string) {
-    return this.prisma.user.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        tasks: true,
-      },
-    });
+    return this.userRepository.getById(id)
   }
 
   async getByEmail(email: string) {
-    try {
-      return this.prisma.user.findUnique({
-        where: {
-          email,
-        },
-        include: {
-          tasks: true,
-        },
-      });
-    } catch (e) {
-      return e;
-    }
+    return this.userRepository.getByEmail(email);
   }
 
   async findOrCreateSocialUser(profile: IGoogleProfile | IGithubProfile) {
-    let user = await this.getByEmail(profile.email);
-    if (!user) {
-      user = await this._createSocialUser(profile);
-    }
-    return user;
-  }
-
-  private async _createSocialUser(
-    profile: IGoogleProfile | IGithubProfile,
-  ): Promise<User> {
-    const email = profile.email;
-    const name =
-      'firstName' in profile
-        ? `${profile.firstName} ${profile.lastName}`
-        : profile.username;
-    const picture = profile.picture || '';
-
-    return this.prisma.user.create({
-      data: {
-        email,
-        name,
-        password: '',
-        verificationToken: null,
-        avatarPath: picture,
-      },
-    });
+    return this.userRepository.findOrCreateSocialUser(profile)
   }
 
   async create(dto: AuthDto) {
-    return this.prisma.user.create({
-      data: {
-        ...dto,
-        password: await hash(dto.password),
-      },
-    });
+    return this.userRepository.create(dto);
   }
 
-  async update(id: string, data: Partial<User>) {
-    const user = await this.prisma.user.update({
-      where: {
-        id,
-      },
-      data,
-    });
-    if(user){
-      delete user.password
-    }
-    return user
+  async update(id: string, data: Partial<UserModel>) {
+    return this.userRepository.update(id, data)
   }
 }
