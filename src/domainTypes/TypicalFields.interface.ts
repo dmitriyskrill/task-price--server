@@ -10,10 +10,10 @@ export interface ITypicalFields {
 	// Но понять ключевые моменты когда и кем создано и как давно обновлялась для
 	// пользователя будет полезна
 	createdAt: Date
-	createdBy: IUser
+	createdById: string
 
 	updatedAt: Date
-	updatedBy: IUser
+	updatedById: string
 
 	// Не всегда можно разрешить пользователю удалять элементы,
 	// но убрать их из визуального отображения полезно

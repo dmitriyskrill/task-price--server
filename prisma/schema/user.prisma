@@ -12,8 +12,8 @@ model User {
   breakInterval  Int? @default(10) @map("break_interval")
   intervalsCount Int? @default(7) @map("intervals_count")
 
-  verificationToken String? @default(cuid()) @map("verification_token")
-  accesses Access[] @default([PROFILE])
+  verificationToken String?  @default(cuid()) @map("verification_token")
+  accesses          Access[] @default([PROFILE])
 
   tasks Task[]
 

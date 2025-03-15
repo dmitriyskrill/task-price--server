@@ -6,10 +6,8 @@ model TableColumnChild {
   widthPercent      Int?
   createdAt         DateTime    @default(now())
   createdById       String
-  createdBy         User        @relation(fields: [createdById], references: [id])
   updatedAt         DateTime    @updatedAt
   updatedById       String
-  updatedBy         User        @relation(fields: [updatedById], references: [id])
   isTrash           Boolean     @default(false)
   dateAddingToTrash DateTime?
   tableColumnId     String

@@ -6,38 +6,58 @@ import {
 	HttpCode,
 	Param,
 	Post,
-	Patch,
+	Patch, Query
 } from '@nestjs/common'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { TableColumnDto } from '@/task/db/dto/task.dto'
+import { CreateTableColumnDto, UpdateTableColumnDto } from '@/table-column/dto/table-column.dto'
 import { TableColumnService } from '@/table-column/table-column.service'
+import { mapDtoToEntity } from '@/utils/mapper.util'
+import { ITableColumn } from '@/domainTypes/TableColumn.interface'
+
 @Controller('table-column')
 export class TableColumnController {
 	constructor(private readonly tableColumnService: TableColumnService) {
 	}
 	@Get()
 	@Auth()
-	async getAll() {
-		return this.tableColumnService.getAll()
+	async get(@Query() filter: Record<string, any>) {
+		return this.tableColumnService.get(filter)
+	}
+
+	@Get(':id')
+	@Auth()
+	async getById(@Param('id') id: string) {
+		return this.tableColumnService.getById(id);
 	}
 
 	@HttpCode(200)
 	@Post()
 	@Auth()
-	async create(@Body() dto: TableColumnDto, @CurrentUser('id') userId: string) {
-		return this.tableColumnService.create(dto, userId)
+	async create(@Body() dto: CreateTableColumnDto, @CurrentUser('id') userId: string) {
+		const baseEntity: Partial<ITableColumn> = {
+			width: 30,
+			isShow: false,
+			isFixed: false,
+		}
+		const newDto = mapDtoToEntity(dto, baseEntity, { createdById: userId, updatedById: userId })
+		return this.tableColumnService.create(newDto)
 	}
 
 	@HttpCode(200)
-	@Patch(':id')
+	@Patch()
 	@Auth()
 	async update(
-		@Body() dto: TableColumnDto,
+		@Query() filter: Record<string, any>,
+		@Body() update: UpdateTableColumnDto,
 		@CurrentUser('id') userId: string,
-		@Param('id') id: string
 	) {
-		return this.tableColumnService.update(dto, id, userId)
+		const baseEntity: Partial<ITableColumn> = {
+			updatedById: userId,
+		};
+		const newUpdate = mapDtoToEntity(update, baseEntity, { updatedById: userId });
+
+		return this.tableColumnService.updateMany(filter, newUpdate)
 	}
 
 	@HttpCode(200)
