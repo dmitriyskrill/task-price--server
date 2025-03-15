@@ -10,10 +10,10 @@ export interface ITypicalFields {
 	// Но понять ключевые моменты когда и кем создано и как давно обновлялась для
 	// пользователя будет полезна
 	createdAt: Date
-	createdBy: IUser
+	createdById: string
 
 	updatedAt: Date
-	updatedBy: IUser
+	updatedById: string
 
 	// Не всегда можно разрешить пользователю удалять элементы,
 	// но убрать их из визуального отображения полезно
@@ -25,7 +25,7 @@ export interface ITypicalFields {
 /* Подсказка как реализовать в Prisma
 
 model YourModel {
-  id          Int      @id @default(autoincrement())
+  id          String      @id @default(autoincrement())
   name        String
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")

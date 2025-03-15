@@ -1,0 +1,17 @@
+model TableColumnChild {
+  id                String      @id @default(uuid())
+  key               String      @unique
+  name              String
+  tooltipInfo       String?
+  widthPercent      Int?
+  createdAt         DateTime    @default(now())
+  createdById       String
+  updatedAt         DateTime    @updatedAt
+  updatedById       String
+  isTrash           Boolean     @default(false)
+  dateAddingToTrash DateTime?
+  tableColumnId     String
+  tableColumn       TableColumn @relation(fields: [tableColumnId], references: [id])
+
+  @@index([key])
+}

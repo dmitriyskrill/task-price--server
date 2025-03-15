@@ -1,0 +1,12 @@
+model TableColumnGroup {
+  id                String      @id @default(uuid())
+  name              String
+  tableColumnId     String
+  tableColumn       TableColumn @relation(fields: [tableColumnId], references: [id])
+  createdAt         DateTime    @default(now())
+  createdById       String
+  updatedAt         DateTime    @updatedAt
+  updatedById       String
+  isTrash           Boolean     @default(false)
+  dateAddingToTrash DateTime?
+}
