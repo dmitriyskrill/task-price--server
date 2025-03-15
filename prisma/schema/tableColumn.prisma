@@ -1,0 +1,21 @@
+model TableColumn {
+  id                   String             @id @default(uuid())
+  key                  String             @unique
+  name                 String
+  width                Int?               @default(30)
+  isShow               Boolean?           @default(false)
+  isFixed              Boolean?           @default(false)
+  cellType             String?
+  createdAt            DateTime           @default(now())
+  createdById          String
+  createdBy            User               @relation(fields: [createdById], references: [id])
+  updatedAt            DateTime           @updatedAt
+  updatedById          String
+  updatedBy            User               @relation(fields: [updatedById], references: [id])
+  isTrash              Boolean            @default(false)
+  dateAddingToTrash    DateTime?
+  tableColumnGroupList TableColumnGroup[]
+  children             TableColumnChild[]
+
+  @@index([key])
+}

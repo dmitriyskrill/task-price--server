@@ -25,7 +25,7 @@ export interface ITypicalFields {
 /* Подсказка как реализовать в Prisma
 
 model YourModel {
-  id          Int      @id @default(autoincrement())
+  id          String      @id @default(autoincrement())
   name        String
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
