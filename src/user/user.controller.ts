@@ -29,7 +29,7 @@ export class UserController {
     return this.userService.update(id, dto)
   }
 
-  @Auth(Access.USER_GET)
+  @Auth()
   @Get('list')
   async getList() {
     return this.userService.getUsers();
