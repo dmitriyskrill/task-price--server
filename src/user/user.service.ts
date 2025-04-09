@@ -36,7 +36,7 @@ export class UserService {
     return this.userRepository.create(dto);
   }
 
-  async update(id: string, data: Partial<UserModel>) {
-    return this.userRepository.update(id, data)
-  }
+	async patch(id: string, data: Partial<UserModel>) {
+		return this.userRepository.patch(id, data)
+	}
 }
