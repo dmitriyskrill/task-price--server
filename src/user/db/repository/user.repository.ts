@@ -1,50 +1,56 @@
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
-import { endOfDay, endOfWeek, isWithinInterval, startOfDay, startOfWeek } from 'date-fns'
-import { IGithubProfile, IGoogleProfile } from '@/auth/social-media/social-media-auth.types'
+import {
+	endOfDay,
+	endOfWeek,
+	isWithinInterval,
+	startOfDay,
+	startOfWeek
+} from 'date-fns'
+import {
+	IGithubProfile,
+	IGoogleProfile
+} from '@/auth/social-media/social-media-auth.types'
 import type { User } from '@prisma/client'
 import { AuthDto } from '@/auth/dto/auth.dto'
 import { hash } from 'argon2'
 
-
 @Injectable()
 export class UserRepository {
 	constructor(private prisma: PrismaService) {}
+
 	async getUsers() {
 		return this.prisma.user.findMany({
 			include: {
-				tasks: true,
-			},
-		});
+				tasks: true
+			}
+		})
 	}
 
 	async getProfile(id: string) {
-		const user = await this.getById(id);
+		const user = await this.getById(id)
 		if (user) {
-			delete user.password;
+			delete user.password
 		}
 
-		const userTasks = user.tasks || [];
-		const totalTasks = userTasks.length;
-		const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted);
+		const userTasks = user.tasks || []
+		const totalTasks = userTasks.length
+		const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted)
 
-		const date = new Date();
+		const date = new Date()
 
-		const todayStart = startOfDay(date);
-		const todayEnd = endOfDay(date);
-		const weekStart = startOfWeek(date);
-		const weekEnd = endOfWeek(date);
+		const todayStart = startOfDay(date)
+		const todayEnd = endOfDay(date)
+		const weekStart = startOfWeek(date)
+		const weekEnd = endOfWeek(date)
 
-		const todayTasks = userTasks
-			.filter(task => isWithinInterval(
-				task.createdAt, { start: todayStart, end: todayEnd },
-			));
+		const todayTasks = userTasks.filter(task =>
+			isWithinInterval(task.createdAt, { start: todayStart, end: todayEnd })
+		)
 
-		const weekTasks = userTasks
-			.filter(task => isWithinInterval(
-				task.createdAt, { start: weekStart, end: weekEnd },
-			));
-
+		const weekTasks = userTasks.filter(task =>
+			isWithinInterval(task.createdAt, { start: weekStart, end: weekEnd })
+		)
 
 		return {
 			user,
@@ -52,54 +58,54 @@ export class UserRepository {
 				{ label: 'Total', value: totalTasks },
 				{ label: 'Completed tasks', value: completedTasks },
 				{ label: 'Today tasks', value: todayTasks },
-				{ label: 'Week tasks', value: weekTasks },
-			],
-		};
+				{ label: 'Week tasks', value: weekTasks }
+			]
+		}
 	}
 
 	async getById(id: string) {
 		return this.prisma.user.findUnique({
 			where: {
-				id,
+				id
 			},
 			include: {
-				tasks: true,
-			},
-		});
+				tasks: true
+			}
+		})
 	}
 
 	async getByEmail(email: string) {
 		try {
 			return this.prisma.user.findUnique({
 				where: {
-					email,
+					email
 				},
 				include: {
-					tasks: true,
-				},
-			});
+					tasks: true
+				}
+			})
 		} catch (e) {
-			return e;
+			return e
 		}
 	}
 
 	async findOrCreateSocialUser(profile: IGoogleProfile | IGithubProfile) {
-		let user = await this.getByEmail(profile.email);
+		let user = await this.getByEmail(profile.email)
 		if (!user) {
-			user = await this._createSocialUser(profile);
+			user = await this._createSocialUser(profile)
 		}
-		return user;
+		return user
 	}
 
 	private async _createSocialUser(
-		profile: IGoogleProfile | IGithubProfile,
+		profile: IGoogleProfile | IGithubProfile
 	): Promise<User> {
-		const email = profile.email;
+		const email = profile.email
 		const name =
 			'firstName' in profile
 				? `${profile.firstName} ${profile.lastName}`
-				: profile.username;
-		const picture = profile.picture || '';
+				: profile.username
+		const picture = profile.picture || ''
 
 		return this.prisma.user.create({
 			data: {
@@ -107,28 +113,38 @@ export class UserRepository {
 				name,
 				password: '',
 				verificationToken: null,
-				avatarPath: picture,
-			},
-		});
+				avatarPath: picture
+			}
+		})
 	}
 
 	async create(dto: AuthDto) {
-		return this.prisma.user.create({
-			data: {
-				...dto,
-				password: await hash(dto.password),
-			},
-		});
+		const data = {
+			...dto
+		}
+		if (dto.password) {
+			data.password = await hash(dto.password)
+		} else {
+			data.password = ''
+		}
+		const user = await this.prisma.user.create({ data })
+		if (user) {
+			delete user.password
+		}
+		return user
 	}
 
-	async update(id: string, data: Partial<User>) {
+	async patch(id: string, data: Partial<User>) {
+		if (data.password) {
+			data.password = await hash(data.password)
+		}
 		const user = await this.prisma.user.update({
 			where: {
-				id,
+				id
 			},
-			data,
-		});
-		if(user){
+			data
+		})
+		if (user) {
 			delete user.password
 		}
 		return user
