@@ -3,15 +3,16 @@ model TableColumn {
   key                  String             @unique
   name                 String
   width                Int?               @default(30)
-  isShow               Boolean?           @default(false)
-  isFixed              Boolean?           @default(false)
-  cellType             String?
-  createdAt            DateTime           @default(now())
-  createdById          String
-  updatedAt            DateTime           @updatedAt
-  updatedById          String
-  isTrash              Boolean            @default(false)
-  dateAddingToTrash    DateTime?
+  isShow               Boolean?           @default(false) @map("is_show")
+  isFixed              Boolean?           @default(false) @map("is_fixed")
+  isEditable           Boolean?           @default(false) @map("is_editable")
+  cellType             String?            @map("cell_type")
+  createdAt            DateTime           @default(now()) @map("created_at")
+  createdById          String             @map("created_by_id")
+  updatedAt            DateTime           @updatedAt @map("update_at")
+  updatedById          String             @map("updated_by_id")
+  isTrash              Boolean            @default(false) @map("is_trash")
+  dateAddingToTrash    DateTime?          @map("date_adding_to_trash")
   tableColumnGroupList TableColumnGroup[]
   children             TableColumnChild[]
 

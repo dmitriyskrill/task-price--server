@@ -24,6 +24,10 @@ export class TableColumnDto {
 	@IsOptional()
 	isFixed?: boolean = false;
 
+	@IsBoolean()
+	@IsOptional()
+	isEditable: boolean = false;
+
 	@IsString()
 	@IsOptional()
 	cellType?: string;

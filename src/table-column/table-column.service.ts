@@ -4,6 +4,7 @@ import { TableColumnRepository } from '@/table-column/db/table-column.repository
 import { ITableColumn } from '@/domainTypes/TableColumn.interface'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { TableColumn } from '@prisma/client'
+import { UserModel } from '@/user/db/User.model'
 
 @Injectable()
 export class TableColumnService {
@@ -23,7 +24,11 @@ export class TableColumnService {
 		return this.tableColumnRepository.create(newDto);
 	}
 
-	async updateMany(filter: Record<string, any>, update: Partial<TableColumn>) {
+	async patch(id: string, data: Partial<UserModel>) {
+		return this.tableColumnRepository.patch(id, data)
+	}
+
+	async patchMany(filter: Record<string, any>, update: Partial<TableColumn>) {
 		const  baseEntity = <Partial<TableColumn>>{}
 		const newDto = mapDtoToEntity(update, baseEntity)
 		return this.tableColumnRepository.updateMany(filter, newDto);
