@@ -3,6 +3,7 @@ model TableColumn {
   key                  String             @unique
   name                 String
   width                Int?               @default(30)
+  sort                 BigInt?            @default(0)
   isShow               Boolean?           @default(false) @map("is_show")
   isFixed              Boolean?           @default(false) @map("is_fixed")
   isEditable           Boolean?           @default(false) @map("is_editable")

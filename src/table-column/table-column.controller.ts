@@ -33,6 +33,17 @@ export class TableColumnController {
 	}
 
 	@HttpCode(200)
+	@Post('fromOldDb')
+	@Auth()
+	async createManyFromOldDb(@CurrentUser('id') userId: string) {
+
+		return this.tableColumnService.createManyFromOldDb({
+			createdById: userId,
+			updatedById: userId
+		})
+	}
+
+	@HttpCode(200)
 	@Post()
 	@Auth()
 	async create(@Body() dto: CreateTableColumnDto, @CurrentUser('id') userId: string) {
