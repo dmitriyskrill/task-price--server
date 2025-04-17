@@ -6,12 +6,14 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 import { ITableColumn } from '@/domainTypes/TableColumn.interface'
 import { HttpService } from '@nestjs/axios'
 import { firstValueFrom } from 'rxjs'
+import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class TableColumnRepository {
 	constructor(
 		private readonly prisma: PrismaService,
-		private readonly httpService: HttpService
+		private readonly httpService: HttpService,
+		private readonly configService: ConfigService
 	) {}
 
 	async get(filter: Record<string, any> = {}) {
@@ -31,10 +33,9 @@ export class TableColumnRepository {
 		updatedById
 	}: Partial<ITableColumn>) {
 		try {
-			const url = 'http://localhost:3030/api/lkTableColumn/mappedToTaskPrice' // URL другого сервера
+			const url = `${this.configService.get('OLD_SERVER_URL')}/api/lkTableColumn/mappedToTaskPrice` // URL другого сервера
 			const response = await firstValueFrom(this.httpService.get(url)) // Выполнение запроса
 			const tableColumnList = response.data
-			console.log('createManyFromOldDb', tableColumnList)
 			return await this.prisma.tableColumn.createMany({
 				data: tableColumnList.map((tableColumn: Partial<ITableColumn>) => ({
 					...tableColumn,
