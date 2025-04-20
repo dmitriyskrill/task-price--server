@@ -3,7 +3,7 @@ export interface ITypicalFields {
 	id: string
 	name: string
 
-	sort: number
+	sort: bigint
 
 
 	// Хранение истории изменения элементов на начальном этапе разработке избыточна,

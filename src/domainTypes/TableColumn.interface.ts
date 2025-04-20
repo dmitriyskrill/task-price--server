@@ -7,6 +7,7 @@ export interface ITableColumn extends ITypicalFields {
 	isShow?: boolean // Default: false
 	isFixed?: boolean // Default: false
 	cellType?: string
+	isEditable?: boolean
 	children?: ITableColumnChild[] // Массив объектов дочерних колонок
 
 	tableColumnGroupList: ITableColumnGroup[]

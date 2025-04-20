@@ -14,6 +14,7 @@ import { CreateTableColumnDto, UpdateTableColumnDto } from '@/table-column/dto/t
 import { TableColumnService } from '@/table-column/table-column.service'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { ITableColumn } from '@/domainTypes/TableColumn.interface'
+import { ITypicalFields } from '@/domainTypes/TypicalFields.interface'
 
 @Controller('table-column')
 export class TableColumnController {
@@ -32,22 +33,32 @@ export class TableColumnController {
 	}
 
 	@HttpCode(200)
+	@Post('fromOldDb')
+	@Auth()
+	async createManyFromOldDb(@CurrentUser('id') userId: string) {
+
+		return this.tableColumnService.createManyFromOldDb({
+			createdById: userId,
+			updatedById: userId
+		})
+	}
+
+	@HttpCode(200)
 	@Post()
 	@Auth()
 	async create(@Body() dto: CreateTableColumnDto, @CurrentUser('id') userId: string) {
 		const baseEntity: Partial<ITableColumn> = {
-			width: 30,
-			isShow: false,
-			isFixed: false,
+			createdById: userId,
+			updatedById: userId
 		}
-		const newDto = mapDtoToEntity(dto, baseEntity, { createdById: userId, updatedById: userId })
+		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.tableColumnService.create(newDto)
 	}
 
 	@HttpCode(200)
 	@Patch()
 	@Auth()
-	async update(
+	async patchMany(
 		@Query() filter: Record<string, any>,
 		@Body() update: UpdateTableColumnDto,
 		@CurrentUser('id') userId: string,
@@ -55,9 +66,23 @@ export class TableColumnController {
 		const baseEntity: Partial<ITableColumn> = {
 			updatedById: userId,
 		};
-		const newUpdate = mapDtoToEntity(update, baseEntity, { updatedById: userId });
+		const newUpdate = mapDtoToEntity(update, baseEntity);
 
-		return this.tableColumnService.updateMany(filter, newUpdate)
+		return this.tableColumnService.patchMany(filter, newUpdate)
+	}
+
+	@HttpCode(200)
+	@Auth()
+	@Patch(':id')
+	async patch(
+		@Param('id') id: string,
+		@Body() update: UpdateTableColumnDto,
+		@CurrentUser('id') userId: string,
+	) {
+		const baseEntity: Partial<ITypicalFields> = {
+			updatedById: userId,
+		};
+		return this.tableColumnService.patch(id, mapDtoToEntity(update, baseEntity));
 	}
 
 	@HttpCode(200)
