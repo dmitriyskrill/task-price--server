@@ -13,8 +13,9 @@ export interface ITableColumn extends ITypicalFields {
 	tableColumnGroupList: ITableColumnGroup[]
 }
 
-interface ITableColumnChild extends ITypicalFields {
+export interface ITableColumnChild extends ITypicalFields {
 	tooltipInfo?: string
 	widthPercent?: number
 	key?: string
+	tableColumnId: string
 }

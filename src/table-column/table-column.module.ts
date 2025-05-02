@@ -4,9 +4,10 @@ import { TableColumnService } from './table-column.service';
 import { TableColumnRepository } from '@/table-column/db/table-column.repository'
 import { PrismaService } from '@/prisma.service'
 import { HttpModule } from '@nestjs/axios';
+import { TableColumnChildModule } from './table-column-child/table-column-child.module';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, TableColumnChildModule],
   controllers: [TableColumnController],
   providers: [TableColumnService, TableColumnRepository, PrismaService]
 })

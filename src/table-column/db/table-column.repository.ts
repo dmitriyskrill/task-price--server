@@ -7,6 +7,7 @@ import { ITableColumn } from '@/domainTypes/TableColumn.interface'
 import { HttpService } from '@nestjs/axios'
 import { firstValueFrom } from 'rxjs'
 import { ConfigService } from '@nestjs/config'
+import { includeRelationsWithOnlyId } from '@/utils/db.util'
 
 @Injectable()
 export class TableColumnRepository {
@@ -18,7 +19,8 @@ export class TableColumnRepository {
 
 	async get(filter: Record<string, any> = {}) {
 		return this.prisma.tableColumn.findMany({
-			where: filter
+			where: filter,
+			include: includeRelationsWithOnlyId(['tableColumnGroupList', 'children']),
 		})
 	}
 
