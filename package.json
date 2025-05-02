@@ -96,6 +96,9 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "resolutions": {
+      "string-width": "^4.2.3"
+    },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }

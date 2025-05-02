@@ -11,7 +11,7 @@
 src/task
 ├── db
     └── task.repository.ts - реализация репозитория
-    ├── Task.model.ts - доменная модель
+    ├── Task.model.ts - доменная модель  -- update - скорее всего не нужна
 ├── task.controller.ts
 ├── task.module.ts
 └── task.service.ts
