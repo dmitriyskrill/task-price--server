@@ -9,4 +9,5 @@ export interface IExpenseDayGraph {
 	expense: IExpense
 	elementStatus?: IElementStatus
 	responsible?: IUser
+	isFact: boolean
 }

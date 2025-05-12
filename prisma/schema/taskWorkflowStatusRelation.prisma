@@ -1,0 +1,10 @@
+model TaskWorkflowStatusRelation {
+  ownId String
+  forId String
+
+  own TaskWorkflowStatus @relation("OwnTaskWorkflowStatus", fields: [ownId], references: [id])
+  for TaskWorkflowStatus @relation("ForTaskWorkflowStatus", fields: [forId], references: [id])
+
+  @@id([ownId, forId])
+  @@map("task_workflow_status_transition")
+}

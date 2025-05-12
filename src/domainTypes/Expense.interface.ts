@@ -28,7 +28,7 @@ export interface IExpense extends ITypicalFields {
 	note?: string
 	planExpense?: IExpense
 	task?: ITask
-	isPlan: boolean
+	isFact: boolean
 	isFixedFact: boolean
 	elementStatus?: IElementStatus
 	owner: IUser

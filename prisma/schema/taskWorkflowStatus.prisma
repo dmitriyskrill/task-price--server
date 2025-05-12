@@ -1,0 +1,28 @@
+model TaskWorkflowStatus {
+  id             String       @id @default(uuid())
+  taskWorkflowId String
+  taskWorkflow   TaskWorkflow @relation(fields: [taskWorkflowId], references: [id])
+
+  taskStatusId String
+  taskStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
+
+  ownerId String
+  owner   User?  @relation("OwnerTaskWorkflowStatus", fields: [ownerId], references: [id])
+
+  isShowMenuBtnInPlanExpenseRow              Boolean?
+  isShowDeleteBtnInTaskRow                   Boolean?
+  isShowOpenLikeMainBtnInTaskRow             Boolean?
+  isShowExpenseCreateMenuAtControlHead       Boolean?
+  isShowTaskCreateMenuAtControlHead          Boolean?
+  isShowPlanElementByDefault                 Boolean?
+  isShowFactElementByDefault                 Boolean?
+  isCreateFactElementAfterSelectedThisStatus Boolean?
+
+  validWorkflowStatuses    TaskWorkflowStatusRelation[] @relation("OwnTaskWorkflowStatus")
+  validForWorkflowStatuses TaskWorkflowStatusRelation[] @relation("ForTaskWorkflowStatus")
+
+  taskWorkflowStatusPermissions TaskWorkflowStatusPermission[]
+
+  @@unique([taskWorkflowId, taskStatusId, ownerId])
+  @@map("task_workflow_status")
+}

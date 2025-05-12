@@ -1,0 +1,38 @@
+enum EntityType {
+  TASK
+  EXPENSE
+  TASK_DAY_GRAPH
+  TASK_DATE_GRAPH
+  EXPENSE_DAY_GRAPH
+  EXPENSE_DATE_GRAPH
+  SUBTASK
+}
+
+enum OperationType {
+  CREATE
+  CREATE_Many
+  READ
+  PATCH
+  PATCH_Many
+  UPDATE
+  UPDATE_Many
+  DELETE
+  DELETE_Many
+}
+
+model TaskWorkflowStatusPermission {
+  id String @id @default(uuid())
+
+  entity    String
+  operation String
+  isPlan    Boolean
+
+  workflowStatusId String
+  workflowStatus   TaskWorkflowStatus @relation(fields: [workflowStatusId], references: [id])
+
+  ownerId String?
+  owner   User?   @relation("OwnerTaskWorkflowStatusPermission", fields: [ownerId], references: [id])
+
+  @@unique([workflowStatusId, entity, operation, ownerId])
+  @@map("task_workflow_status_permission")
+}
