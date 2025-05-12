@@ -9,6 +9,7 @@ import { UserModule } from '@/user/user.module';
 // import { TaskDateGraphModule } from '@/task/task-date-graph/task-date-graph.module';
 // import { ExpenseModule } from '@/expense/expense.module';
 import { TableColumnModule } from '@/table-column/table-column.module';
+import { UnitModule } from './unit/unit.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TableColumnModule } from '@/table-column/table-column.module';
     AuthModule,
     UserModule,
     TableColumnModule,
+    UnitModule,
     // TaskModule,
     // TaskDayGraphModule,
     // TaskDateGraphModule,

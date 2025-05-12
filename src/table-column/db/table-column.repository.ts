@@ -20,7 +20,7 @@ export class TableColumnRepository {
 	async get(filter: Record<string, any> = {}) {
 		return this.prisma.tableColumn.findMany({
 			where: filter,
-			include: includeRelationsWithOnlyId(['tableColumnGroupList', 'children']),
+			include: includeRelationsWithOnlyId(['tableColumnGroupList', 'children'])
 		})
 	}
 
