@@ -1,0 +1,22 @@
+model TaskWorkflow {
+  id                String    @id @default(uuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+
+  name      String
+  shortName String @map("short_name")
+
+  ownerId String?
+  owner   User?   @relation("OwnerTaskWorkflow", fields: [ownerId], references: [id])
+
+  taskWorkflowStatuses TaskWorkflowStatus[]
+
+  @@unique([ownerId, name])
+  @@unique([ownerId, shortName])
+  @@map("task_workflow")
+}

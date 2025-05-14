@@ -23,7 +23,7 @@ export interface ITask extends ITypicalFields {
 	amount?: number
 	amountFact?: number
 
-	isPlan?: boolean // Default: true
+	isFact: boolean
 
 	// Для расчета итоговых расходов и прибыли задачи ...
 

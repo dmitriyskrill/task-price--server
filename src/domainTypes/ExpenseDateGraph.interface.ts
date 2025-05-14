@@ -9,7 +9,7 @@ export interface IExpenseDateGraph extends ITypicalFields {
 	expense: IExpense
 	elementStatus?: IElementStatus
 	responsible?: IUser
-
+	isFact: boolean
 	// Вспомогательное поле которые в себе хранит название сущности. Применяется для управления стилями при проказе на фронте и при распределении в данных
 	endpoint?: string
 }
