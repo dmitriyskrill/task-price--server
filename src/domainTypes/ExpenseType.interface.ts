@@ -1,6 +1,5 @@
 import type { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
 import type { IUnit } from './Unit.interface'
-import type { IElementStatus } from './ElementStatus.interface'
 
 export interface IExpenseType {
 
@@ -11,8 +10,6 @@ export interface IExpenseType {
 	defaultUnit?: IUnit
   /* Допустимые ед. измерения */
 	admissibleUnits?: IUnit[]
-
-	defaultElementStatus?: IElementStatus // Todo проработать логику определение и изменения статуса элементов в условиях бесконечной вложенности
 
   /* Источники для общего количества (План) */
 	defaultAmountTypesInTotalAmountPlan?: TAmountTypesInTotalAmount[]

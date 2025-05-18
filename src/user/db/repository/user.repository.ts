@@ -22,7 +22,7 @@ export class UserRepository {
 	async getUsers() {
 		return this.prisma.user.findMany({
 			include: {
-				tasks: true
+				ownTasks: true
 			}
 		})
 	}
@@ -33,7 +33,7 @@ export class UserRepository {
 			delete user.password
 		}
 
-		const userTasks = user.tasks || []
+		const userTasks = user.ownTasks || []
 		const totalTasks = userTasks.length
 		const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted)
 
@@ -69,7 +69,7 @@ export class UserRepository {
 				id
 			},
 			include: {
-				tasks: true
+				ownTasks: true
 			}
 		})
 	}
@@ -81,7 +81,7 @@ export class UserRepository {
 					email
 				},
 				include: {
-					tasks: true
+					ownTasks: true
 				}
 			})
 		} catch (e) {

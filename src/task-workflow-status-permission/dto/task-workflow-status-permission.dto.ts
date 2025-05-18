@@ -8,10 +8,8 @@ export class CreateTaskWorkflowStatusPermissionDto {
 	@IsString()
 	name: string;
 
-	@IsString()
-	shortName: string;
 }
 
-export class TaskTaskWorkflowStatusPermissionDto {
+export class TaskWorkflowStatusPermissionDto {
 
 }
