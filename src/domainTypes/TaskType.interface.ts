@@ -1,7 +1,6 @@
 import { ITypicalFields } from './TypicalFields.interface'
 import { IUnit } from './Unit.interface'
 import { IExpenseType } from './ExpenseType.interface'
-import { IElementStatus } from './ElementStatus.interface'
 
 export interface ITaskType extends ITypicalFields {
 	shortName: string // Обязательно
@@ -24,9 +23,8 @@ export interface ITaskType extends ITypicalFields {
 	isTopLevel?: boolean
 
 	/* Статус по умолчанию */
-	defaultElementStatus?: IElementStatus | null
+		//TODO добавить для задачи рабочий процесс и статус
 	/* Допустимые статусы */
-	admissibleElementStatuses?: IElementStatus[]
 
 	/* Статус, указанный по умолчанию в типе задачи, является приоритетным
 	  TODO понять что значит

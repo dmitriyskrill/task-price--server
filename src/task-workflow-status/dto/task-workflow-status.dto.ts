@@ -12,6 +12,6 @@ export class CreateTaskWorkflowStatusDto {
 	shortName: string;
 }
 
-export class TaskTaskWorkflowStatusDto {
+export class TaskWorkflowStatusDto {
 
 }

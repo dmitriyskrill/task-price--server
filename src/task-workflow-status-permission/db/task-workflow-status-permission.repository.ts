@@ -17,13 +17,13 @@ export class TaskWorkflowStatusPermissionRepository {
 	) {}
 
 	async get(filter: Record<string, any> = {}) {
-		return this.prisma.taskWorkflowStatus.findMany({
+		return this.prisma.taskWorkflowStatusPermission.findMany({
 			where: filter
 		})
 	}
 
 	async getById(id: string) {
-		return this.prisma.taskWorkflowStatus.findUnique({
+		return this.prisma.taskWorkflowStatusPermission.findUnique({
 			where: { id }
 		})
 	}
@@ -36,7 +36,7 @@ export class TaskWorkflowStatusPermissionRepository {
 			const url = `${this.configService.get('OLD_SERVER_URL')}/api/lkTaskWorkflowStatusPermission/mappedToTaskPrice` // URL другого сервера
 			const response = await firstValueFrom(this.httpService.get(url)) // Выполнение запроса
 			const taskWorkflowStatusList = response.data
-			return await this.prisma.taskWorkflowStatus.createMany({
+			return await this.prisma.taskWorkflowStatusPermission.createMany({
 				data: taskWorkflowStatusList.map((taskWorkflowStatus: Partial<ITaskWorkflowStatusPermission>) => ({
 					...taskWorkflowStatus,
 					createdById,
@@ -55,9 +55,10 @@ export class TaskWorkflowStatusPermissionRepository {
 		}
 	}
 
-	async create(dto: TaskWorkflowStatusPermission): Promise<TaskWorkflowStatusPermission> {
+	// TODO Убрать any
+	async create(dto: any): Promise<TaskWorkflowStatusPermission> {
 		try {
-			return await this.prisma.taskWorkflowStatus.create({
+			return await this.prisma.taskWorkflowStatusPermission.create({
 				data: dto
 			})
 		} catch (error) {
@@ -73,7 +74,7 @@ export class TaskWorkflowStatusPermissionRepository {
 	}
 
 	async updateMany(filter: Record<string, any>, data: TaskWorkflowStatusPermissionDto) {
-		return this.prisma.taskWorkflowStatus.updateMany({
+		return this.prisma.taskWorkflowStatusPermission.updateMany({
 			where: filter,
 			data: {
 				...data
@@ -82,7 +83,7 @@ export class TaskWorkflowStatusPermissionRepository {
 	}
 
 	async patch(id: string, data: Partial<TaskWorkflowStatusPermission>) {
-		return this.prisma.taskWorkflowStatus.update({
+		return this.prisma.taskWorkflowStatusPermission.update({
 			where: {
 				id
 			},
@@ -91,7 +92,7 @@ export class TaskWorkflowStatusPermissionRepository {
 	}
 
 	async delete(id: string) {
-		return this.prisma.taskWorkflowStatus.delete({
+		return this.prisma.taskWorkflowStatusPermission.delete({
 			where: { id }
 		})
 	}

@@ -2,7 +2,6 @@ import { ITypicalFields } from './TypicalFields.interface'
 import { IUser } from './User.interface'
 import { IUnit } from './Unit.interface'
 import { TAmountTypesInTotalAmount } from './AmountTypesInTotalAmount.type'
-import { IElementStatus } from './ElementStatus.interface'
 import { ITaskType } from './TaskType.interface'
 
 export interface ITask extends ITypicalFields {
@@ -13,7 +12,6 @@ export interface ITask extends ITypicalFields {
 	approvalDate?: Date
 	transferDate?: Date
 	amountTypesInTotalAmount?: TAmountTypesInTotalAmount[] // Default: ['days']
-	elementStatus?: IElementStatus // ID статуса элемента
 	taskType: ITaskType // ID типа задачи (обязательно)
 
 	parentTask?: ITask // ID родительской задачи (или null)
