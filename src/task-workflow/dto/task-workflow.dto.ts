@@ -10,6 +10,9 @@ export class CreateTaskWorkflowDto {
 
 	@IsString()
 	shortName: string;
+
+	@IsString()
+	ownerId: string;
 }
 
 export class TaskWorkflowDto {

@@ -6,12 +6,13 @@ export class UpdateTaskStatusDto {
 
 export class CreateTaskStatusDto {
 	@IsString()
-	name: string;
+	name: string
 
 	@IsString()
-	shortName: string;
+	shortName: string
+
+	@IsString()
+	ownerId: string
 }
 
-export class TaskStatusDto {
-
-}
+export class TaskStatusDto {}
