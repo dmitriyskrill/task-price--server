@@ -25,6 +25,10 @@ export class AuthService {
   private readonly TOKEN_EXPIRATION_ACCESS = '1h';
   private readonly TOKEN_EXPIRATION_REFRESH = '7d';
 
+  async getCurrentUser({userId}: any): Promise<User> {
+    return this.userService.getCurrentUser(userId)
+  }
+
   async login(dto: AuthDto) {
     const user = await this.validateUser(dto);
     return this.buildResponseObject(user);
