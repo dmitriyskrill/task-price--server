@@ -1,4 +1,10 @@
 model TableColumnGroup {
+  id                String      @id @default(uuid())
+  name              String
+  sort              BigInt?     @default(0)
+  tableColumnId     String
+  tableColumn       TableColumn @relation(fields: [tableColumnId], references: [id])
+  createdAt         DateTime    @default(now())
   id            String      @id @default(uuid())
   name          String
   tableColumnId String      @map("table_column_id")

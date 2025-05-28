@@ -4,6 +4,7 @@ import { mapDtoToEntity } from '@/utils/mapper.util'
 import { TableColumnChild } from '@prisma/client'
 import { UserModel } from '@/user/db/User.model'
 import { Injectable } from '@nestjs/common'
+import { generateSort } from '@/utils/generateSort'
 
 @Injectable()
 export class TableColumnChildService {
@@ -22,7 +23,9 @@ export class TableColumnChildService {
 	}
 
 	async create(dto: ITableColumnChild) {
-		const baseEntity = <Partial<TableColumnChild>>{}
+		const baseEntity = <Partial<TableColumnChild>>{
+			sort: generateSort()
+		}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.tableColumnChildRepository.create(newDto)
 	}

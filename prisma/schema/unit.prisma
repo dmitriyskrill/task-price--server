@@ -1,0 +1,19 @@
+model Unit {
+  id                String    @id @default(uuid())
+  key               String    @unique
+  name              String
+  sort              BigInt?
+  createdAt         DateTime  @default(now())
+  createdById       String
+  updatedAt         DateTime  @updatedAt
+  updatedById       String
+  isTrash           Boolean   @default(false)
+  dateAddingToTrash DateTime?
+
+  shortName  String
+  fullName   String
+  codeId     String
+  isHourUnit Boolean @default(false)
+
+  @@index([key])
+}

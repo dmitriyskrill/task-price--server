@@ -11,6 +11,7 @@ model User {
   patronymic String?
   password   String
   avatarPath String?
+  sort       BigInt? @default(0)
 
   verificationToken String?  @default(cuid()) @map("verification_token")
   accesses          Access[] @default([PROFILE])
