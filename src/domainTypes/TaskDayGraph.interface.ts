@@ -7,7 +7,7 @@ export interface taskDateGraph extends ITypicalFields{
 	day: number 
 	amount: number 
 	task: string
-	isFact?: boolean 
+	isFact: boolean
 	owner: IUser 
 	
 }

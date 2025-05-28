@@ -47,3 +47,11 @@ _______
 
 npm i @nestjs-modules/mailer @nestjs/config @nestjs/jwt @nestjs/mapped-types @nestjs/passport @nestlab/google-recaptcha @prisma/client @react-email/components @react-email/render argon2 class-transformer class-validator cookie-parser lodash nodemailer passport passport-github2 passport-google-oauth20 passport-jwt prisma react-email
 npm i -D   @types/cookie-parser @types/lodash @types/passport-github2 @types/passport-google-oauth20 @types/passport-jwt dotenv
+
+
+
+yarn upgrade wrap-ansi
+node 20.16.0
+
+npx prisma migrate reset
+npx prisma migrate dev --name init

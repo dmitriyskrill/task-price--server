@@ -16,7 +16,11 @@ model User {
   verificationToken String?  @default(cuid()) @map("verification_token")
   accesses          Access[] @default([PROFILE])
 
-  tasks Task[]
+  ownTasks                         Task[]                         @relation("OwnerTask")
+  ownTaskStatuses                  TaskStatus[]                   @relation("OwnerTaskStatus")
+  ownTaskWorkflows                 TaskWorkflow[]                 @relation("OwnerTaskWorkflow")
+  OwnTaskWorkflowStatuses          TaskWorkflowStatus[]           @relation("OwnerTaskWorkflowStatus")
+  OwnTaskWorkflowStatusPermissions TaskWorkflowStatusPermission[] @relation("OwnerTaskWorkflowStatusPermission")
 
   @@map("user")
 }

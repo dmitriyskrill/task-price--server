@@ -25,7 +25,7 @@ export class TaskRepository implements ITaskRepository {
 		try {
 			return await this.prisma.task.findMany({
 				where: {
-					userId
+					ownerId: userId
 				}
 			})
 		} catch (e) {
@@ -38,7 +38,7 @@ export class TaskRepository implements ITaskRepository {
 			return await this.prisma.task.create({
 				data: {
 					...dto,
-					user: {
+					owner: {
 						connect: {
 							id: userId
 						}
@@ -58,7 +58,7 @@ export class TaskRepository implements ITaskRepository {
 		try {
 			return await this.prisma.task.update({
 				where: {
-					userId,
+					ownerId: userId,
 					id: taskId
 				},
 				data: dto
