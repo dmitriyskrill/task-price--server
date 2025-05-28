@@ -8,6 +8,7 @@ import { IUnit } from '@/domainTypes/Unit.interface'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { Unit } from '@prisma/client'
 import { UserModel } from '@/user/db/User.model'
+import { generateSort } from '@/utils/generateSort'
 
 @Injectable()
 export class UnitService {
@@ -23,7 +24,9 @@ export class UnitService {
 	}
 
 	async create(dto: IUnit) {
-		const baseEntity = <Partial<Unit>>{}
+		const baseEntity = <Partial<IUnit>>{
+			sort: generateSort()
+		}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.unitRepository.create(newDto)
 	}

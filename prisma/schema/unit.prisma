@@ -2,7 +2,7 @@ model Unit {
   id                String    @id @default(uuid())
   key               String    @unique
   name              String
-  sort              Int?
+  sort              BigInt?
   createdAt         DateTime  @default(now())
   createdById       String
   updatedAt         DateTime  @updatedAt

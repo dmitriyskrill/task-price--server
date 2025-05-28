@@ -32,16 +32,16 @@ export class UnitController {
 		return this.unitService.getById(id);
 	}
 
-	@HttpCode(200)
-	@Post('fromOldDb')
-	@Auth()
-	async createManyFromOldDb(@CurrentUser('id') userId: string) {
-
-		return this.unitService.createManyFromOldDb({
-			createdById: userId,
-			updatedById: userId
-		})
-	}
+	// @HttpCode(200)
+	// @Post('fromOldDb')
+	// @Auth()
+	// async createManyFromOldDb(@CurrentUser('id') userId: string) {
+	//
+	// 	return this.unitService.createManyFromOldDb({
+	// 		createdById: userId,
+	// 		updatedById: userId
+	// 	})
+	// }
 
 	@HttpCode(200)
 	@Post()

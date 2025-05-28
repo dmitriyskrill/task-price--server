@@ -1,7 +1,7 @@
 model TableColumnGroup {
   id                String      @id @default(uuid())
   name              String
-  sort              Int
+  sort              BigInt?     @default(0)
   tableColumnId     String
   tableColumn       TableColumn @relation(fields: [tableColumnId], references: [id])
   createdAt         DateTime    @default(now())

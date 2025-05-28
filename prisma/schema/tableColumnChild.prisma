@@ -2,7 +2,7 @@ model TableColumnChild {
   id                String      @id @default(uuid())
   key               String      @unique
   name              String
-  sort              Int
+  sort              BigInt?
   tooltipInfo       String?
   widthPercent      Int?
   createdAt         DateTime    @default(now())

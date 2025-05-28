@@ -2,6 +2,7 @@ model TaskDateGraph {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+  sort      BigInt?  @default(0)
 
   date   DateTime
   amount Int
