@@ -1,5 +1,5 @@
 model TaskWorkflow {
-  id                String    @id @default(uuid())
+  id                String    @id @default(cuid())
   sort              BigInt?   @default(0)
   createdAt         DateTime  @default(now()) @map("created_at")
   createdById       String    @map("created_by_id")
@@ -11,7 +11,7 @@ model TaskWorkflow {
   name      String
   shortName String @map("short_name")
 
-  ownerId String?
+  ownerId String? @map("owner_id")
   owner   User?   @relation("OwnerTaskWorkflow", fields: [ownerId], references: [id])
 
   taskWorkflowStatuses TaskWorkflowStatus[]

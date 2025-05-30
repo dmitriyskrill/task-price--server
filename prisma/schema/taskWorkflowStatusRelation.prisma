@@ -1,6 +1,6 @@
 model TaskWorkflowStatusRelation {
-  ownId String
-  forId String
+  ownId String @map("own_id")
+  forId String @map("for_id")
 
   own TaskWorkflowStatus @relation("OwnTaskWorkflowStatus", fields: [ownId], references: [id])
   for TaskWorkflowStatus @relation("ForTaskWorkflowStatus", fields: [forId], references: [id])
