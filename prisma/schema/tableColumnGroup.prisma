@@ -5,15 +5,9 @@ model TableColumnGroup {
   tableColumnId     String
   tableColumn       TableColumn @relation(fields: [tableColumnId], references: [id])
   createdAt         DateTime    @default(now())
-  id            String      @id @default(uuid())
-  name          String
-  tableColumnId String      @map("table_column_id")
-  tableColumn   TableColumn @relation(fields: [tableColumnId], references: [id])
-
-  createdAt         DateTime  @default(now())
   createdById       String
-  updatedAt         DateTime  @updatedAt
+  updatedAt         DateTime    @updatedAt
   updatedById       String
-  isTrash           Boolean   @default(false)
+  isTrash           Boolean     @default(false)
   dateAddingToTrash DateTime?
 }
