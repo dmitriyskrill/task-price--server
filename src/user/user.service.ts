@@ -20,6 +20,10 @@ export class UserService {
     return this.userRepository.getProfile(id);
   }
 
+  async getCurrentUser(id: string) {
+    return this.userRepository.getCurrentUser(id);
+  }
+
   async getById(id: string) {
     return this.userRepository.getById(id)
   }

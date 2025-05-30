@@ -76,7 +76,7 @@ export class TaskStatusController {
   @Patch(':id')
   async patch(
     @Param('id') id: string,
-    @Body() update: UpdateTaskStatusDto,
+    @Body() update:any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITypicalFields> = {

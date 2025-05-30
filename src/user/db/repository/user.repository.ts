@@ -27,40 +27,23 @@ export class UserRepository {
 		})
 	}
 
+	async getCurrentUser(id: string) {
+		const user = await this.getById(id)
+		if (user) {
+			delete user.password
+		}
+
+		return user
+	}
+
+
 	async getProfile(id: string) {
 		const user = await this.getById(id)
 		if (user) {
 			delete user.password
 		}
 
-		const userTasks = user.ownTasks || []
-		const totalTasks = userTasks.length
-		const completedTasks = userTasks.filter(({ isCompleted }) => isCompleted)
-
-		const date = new Date()
-
-		const todayStart = startOfDay(date)
-		const todayEnd = endOfDay(date)
-		const weekStart = startOfWeek(date)
-		const weekEnd = endOfWeek(date)
-
-		const todayTasks = userTasks.filter(task =>
-			isWithinInterval(task.createdAt, { start: todayStart, end: todayEnd })
-		)
-
-		const weekTasks = userTasks.filter(task =>
-			isWithinInterval(task.createdAt, { start: weekStart, end: weekEnd })
-		)
-
-		return {
-			user,
-			statistics: [
-				{ label: 'Total', value: totalTasks },
-				{ label: 'Completed tasks', value: completedTasks },
-				{ label: 'Today tasks', value: todayTasks },
-				{ label: 'Week tasks', value: weekTasks }
-			]
-		}
+		return user
 	}
 
 	async getById(id: string) {

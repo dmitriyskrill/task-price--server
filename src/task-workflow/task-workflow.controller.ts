@@ -60,7 +60,7 @@ export class TaskWorkflowController {
   @Auth()
   async patchMany(
     @Query() filter: Record<string, any>,
-    @Body() update: UpdateTaskWorkflowDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITaskWorkflow> = {
@@ -76,7 +76,7 @@ export class TaskWorkflowController {
   @Patch(':id')
   async patch(
     @Param('id') id: string,
-    @Body() update: UpdateTaskWorkflowDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITypicalFields> = {
