@@ -19,6 +19,7 @@ import { UserModel } from '@/user/db/User.model'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { IUser } from '@/domainTypes/User.interface'
 import { ITypicalFields } from '@/domainTypes/TypicalFields.interface'
+import { generateSort } from '@/utils/generateSort'
 
 @Controller('user')
 export class UserController {
@@ -75,7 +76,8 @@ export class UserController {
 	async create(@Body() dto: CreateUserDto, @CurrentUser('id') userId: string) {
 		const baseEntity: Partial<IUser> = {
 			createdById: userId,
-			updatedById: userId
+			updatedById: userId,
+			sort: generateSort()
 		}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.userService.create(newDto)

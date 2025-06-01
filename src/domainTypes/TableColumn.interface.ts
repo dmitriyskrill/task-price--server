@@ -1,4 +1,4 @@
-import { ITableColumnGroup } from './TableColumnGroup.interface'
+ import { ITableColumnGroup } from './TableColumnGroup.interface'
 import { ITypicalFields } from '@/domainTypes/TypicalFields.interface'
 
 export interface ITableColumn extends ITypicalFields {
@@ -10,7 +10,7 @@ export interface ITableColumn extends ITypicalFields {
 	isEditable?: boolean
 	children?: ITableColumnChild[] // Массив объектов дочерних колонок
 
-	tableColumnGroupList: ITableColumnGroup[]
+	tableColumnGroup?: ITableColumnGroup
 }
 
 export interface ITableColumnChild extends ITypicalFields {
