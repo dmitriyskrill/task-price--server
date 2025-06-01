@@ -8,6 +8,7 @@ import { ITableColumn } from '@/domainTypes/TableColumn.interface'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { TableColumn } from '@prisma/client'
 import { UserModel } from '@/user/db/User.model'
+import { generateSort } from '@/utils/generateSort'
 
 @Injectable()
 export class TableColumnService {
@@ -26,7 +27,9 @@ export class TableColumnService {
 	}
 
 	async create(dto: ITableColumn) {
-		const baseEntity = <Partial<TableColumn>>{}
+		const baseEntity = <Partial<TableColumn>>{
+			sort: generateSort()
+		}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.tableColumnRepository.create(newDto)
 	}

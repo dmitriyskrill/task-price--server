@@ -2,7 +2,7 @@ import { IsBoolean, IsInt, IsOptional, IsString, IsUUID, Max, Min } from 'class-
 import { PartialType, OmitType } from '@nestjs/mapped-types';
 
 export class TableColumnDto {
-	@IsUUID()
+	@IsString()
 	@IsOptional()
 	id?: string;
 
@@ -31,6 +31,9 @@ export class TableColumnDto {
 	@IsString()
 	@IsOptional()
 	cellType?: string;
+
+	@IsOptional()
+	tableColumnGroup?: any
 
 	@IsBoolean()
 	@IsOptional()
