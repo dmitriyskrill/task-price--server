@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "TableColumn" ALTER COLUMN "sort" SET DATA TYPE BIGINT;
