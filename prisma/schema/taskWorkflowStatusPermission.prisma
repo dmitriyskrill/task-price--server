@@ -21,18 +21,18 @@ enum OperationType {
 }
 
 model TaskWorkflowStatusPermission {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   entity    EntityType
   operation OperationType
-  isPlan    Boolean
+  isPlan    Boolean @map("is_plan")
 
-  workflowStatusId String
-  workflowStatus   TaskWorkflowStatus @relation(fields: [workflowStatusId], references: [id])
+  taskWorkflowStatusId String             @map("task_workflow_status_id")
+  taskWorkflowStatus   TaskWorkflowStatus @relation(fields: [taskWorkflowStatusId], references: [id])
 
-  ownerId String?
+  ownerId String? @map("owner_id")
   owner   User?   @relation("OwnerTaskWorkflowStatusPermission", fields: [ownerId], references: [id])
 
-  @@unique([workflowStatusId, entity, operation, ownerId])
+  @@unique([taskWorkflowStatusId, entity, operation, ownerId])
   @@map("task_workflow_status_permission")
 }

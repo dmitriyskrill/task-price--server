@@ -46,7 +46,7 @@ export class TaskWorkflowStatusController {
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: CreateTaskWorkflowStatusDto, @CurrentUser('id') userId: string) {
+  async create(@Body() dto: any, @CurrentUser('id') userId: string) {
     const baseEntity: Partial<ITaskWorkflowStatus> = {
       createdById: userId,
       updatedById: userId
@@ -60,7 +60,7 @@ export class TaskWorkflowStatusController {
   @Auth()
   async patchMany(
     @Query() filter: Record<string, any>,
-    @Body() update: UpdateTaskWorkflowStatusDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITaskWorkflowStatus> = {
@@ -76,7 +76,7 @@ export class TaskWorkflowStatusController {
   @Patch(':id')
   async patch(
     @Param('id') id: string,
-    @Body() update: UpdateTaskWorkflowStatusDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITypicalFields> = {

@@ -18,13 +18,21 @@ export class TaskWorkflowStatusRepository {
 
 	async get(filter: Record<string, any> = {}) {
 		return this.prisma.taskWorkflowStatus.findMany({
-			where: filter
+			where: filter,
+			include: {
+				taskWorkflow: true,
+				taskStatus: true,
+			},
 		})
 	}
 
 	async getById(id: string) {
 		return this.prisma.taskWorkflowStatus.findUnique({
-			where: { id }
+			where: { id },
+			include: {
+				taskWorkflow: true,
+				taskStatus: true,
+			},
 		})
 	}
 
@@ -85,6 +93,10 @@ export class TaskWorkflowStatusRepository {
 		return this.prisma.taskWorkflowStatus.update({
 			where: {
 				id
+			},
+			include: {
+				taskWorkflow: true,
+				taskStatus: true,
 			},
 			data
 		})

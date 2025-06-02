@@ -6,10 +6,13 @@ export class UpdateTaskWorkflowStatusDto {
 
 export class CreateTaskWorkflowStatusDto {
 	@IsString()
-	name: string;
+	ownerId: string
 
 	@IsString()
-	shortName: string;
+	taskWorkflowId: string
+
+	@IsString()
+	taskStatusId: string
 }
 
 export class TaskWorkflowStatusDto {
