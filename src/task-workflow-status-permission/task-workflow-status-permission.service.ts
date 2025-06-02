@@ -21,7 +21,7 @@ export class TaskWorkflowStatusPermissionService {
     return this.taskWorkflowStatusRepository.getById(id)
   }
 
-  async create(dto: ITaskWorkflowStatusPermission) {
+  async create(dto: any) {
     const baseEntity = <Partial<TaskWorkflowStatusPermission>>{}
     const newDto = mapDtoToEntity(dto, baseEntity)
     return this.taskWorkflowStatusRepository.create(newDto)
@@ -31,7 +31,7 @@ export class TaskWorkflowStatusPermissionService {
     return this.taskWorkflowStatusRepository.patch(id, data)
   }
 
-  async patchMany(filter: Record<string, any>, update: Partial<TaskWorkflowStatusPermission>) {
+  async patchMany(filter: Record<string, any>, update: any) {
     const baseEntity = <Partial<TaskWorkflowStatusPermission>>{}
     const newDto = mapDtoToEntity(update, baseEntity)
     return this.taskWorkflowStatusRepository.updateMany(filter, newDto)
