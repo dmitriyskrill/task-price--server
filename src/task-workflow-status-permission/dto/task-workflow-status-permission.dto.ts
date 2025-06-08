@@ -5,8 +5,6 @@ export class UpdateTaskWorkflowStatusPermissionDto {
 }
 
 export class CreateTaskWorkflowStatusPermissionDto {
-	@IsString()
-	name: string;
 
 }
 

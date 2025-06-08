@@ -46,7 +46,7 @@ export class TaskWorkflowStatusPermissionController {
   @HttpCode(200)
   @Post()
   @Auth()
-  async create(@Body() dto: CreateTaskWorkflowStatusPermissionDto, @CurrentUser('id') userId: string) {
+  async create(@Body() dto: any, @CurrentUser('id') userId: string) {
     const baseEntity: Partial<ITaskWorkflowStatusPermission> = {
       createdById: userId,
       updatedById: userId
@@ -60,7 +60,7 @@ export class TaskWorkflowStatusPermissionController {
   @Auth()
   async patchMany(
     @Query() filter: Record<string, any>,
-    @Body() update: UpdateTaskWorkflowStatusPermissionDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITaskWorkflowStatusPermission> = {
@@ -76,7 +76,7 @@ export class TaskWorkflowStatusPermissionController {
   @Patch(':id')
   async patch(
     @Param('id') id: string,
-    @Body() update: UpdateTaskWorkflowStatusPermissionDto,
+    @Body() update: any,
     @CurrentUser('id') userId: string,
   ) {
     const baseEntity: Partial<ITypicalFields> = {

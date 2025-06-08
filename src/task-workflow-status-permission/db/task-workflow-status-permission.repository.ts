@@ -18,13 +18,29 @@ export class TaskWorkflowStatusPermissionRepository {
 
 	async get(filter: Record<string, any> = {}) {
 		return this.prisma.taskWorkflowStatusPermission.findMany({
-			where: filter
+			where: filter,
+			include: {
+				taskWorkflowStatus: {
+					include: {
+						taskStatus: true,
+						taskWorkflow: true,
+					},
+				},
+			},
 		})
 	}
 
 	async getById(id: string) {
 		return this.prisma.taskWorkflowStatusPermission.findUnique({
-			where: { id }
+			where: { id },
+			include: {
+				taskWorkflowStatus: {
+					include: {
+						taskStatus: true,
+						taskWorkflow: true,
+					},
+				},
+			},
 		})
 	}
 
@@ -59,7 +75,7 @@ export class TaskWorkflowStatusPermissionRepository {
 	async create(dto: any): Promise<TaskWorkflowStatusPermission> {
 		try {
 			return await this.prisma.taskWorkflowStatusPermission.create({
-				data: dto
+				data: dto,
 			})
 		} catch (error) {
 			if (error instanceof PrismaClientKnownRequestError) {
@@ -86,6 +102,14 @@ export class TaskWorkflowStatusPermissionRepository {
 		return this.prisma.taskWorkflowStatusPermission.update({
 			where: {
 				id
+			},
+			include: {
+				taskWorkflowStatus: {
+					include: {
+						taskStatus: true,
+						taskWorkflow: true,
+					},
+				},
 			},
 			data
 		})
