@@ -6,6 +6,7 @@ import { getGoogleRecaptchaConfig } from './config/google-recaptcha.config'
 import { UserModule } from '@/user/user.module'
 import { TableColumnModule } from '@/table-column/table-column.module'
 import { UnitModule } from './unit/unit.module'
+import { TaskTypeModule } from '@/task-type/task-type.module'
 import { TaskStatusModule } from '@/task-status/task-status.module'
 import { TaskWorkflowModule } from '@/task-workflow/task-workflow.module'
 import { TaskWorkflowStatusModule } from '@/task-workflow-status/task-workflow-status.module'
@@ -29,6 +30,7 @@ import { TaskWorkflowStatusPermissionModule } from '@/task-workflow-status-permi
     TaskWorkflowModule,
     TaskWorkflowStatusModule,
     TaskWorkflowStatusPermissionModule,
+    TaskTypeModule
     // TaskModule,
     // TaskDayGraphModule,
     // TaskDateGraphModule,

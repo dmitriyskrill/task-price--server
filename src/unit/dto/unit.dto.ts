@@ -10,12 +10,8 @@ import {
 import { PartialType, OmitType } from '@nestjs/mapped-types'
 
 export class UnitDto {
-	@IsUUID()
 	@IsOptional()
 	id?: string
-
-	@IsString()
-	key: string
 
 	@IsString()
 	name: string
