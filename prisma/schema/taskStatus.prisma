@@ -1,5 +1,5 @@
 model TaskStatus {
-  id                String    @id @default(uuid())
+  id                String    @id @default(cuid())
   sort              BigInt?   @default(0)
   createdAt         DateTime  @default(now()) @map("created_at")
   createdById       String    @map("created_by_id")
@@ -15,6 +15,8 @@ model TaskStatus {
   owner   User   @relation("OwnerTaskStatus", fields: [ownerId], references: [id])
 
   taskWorkflowStatuses TaskWorkflowStatus[]
+  ExpenseDateGraph     ExpenseDateGraph[]
+  ExpenseDayGraph      ExpenseDayGraph[]
 
   // Делаем проверку уникальности названий для пользователя
   @@unique([ownerId, name])

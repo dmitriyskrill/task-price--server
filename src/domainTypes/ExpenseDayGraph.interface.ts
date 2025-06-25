@@ -1,11 +1,12 @@
-import { IExpense } from './Expense.interface'
 import { IUser } from './User.interface'
+import { ITypicalFields } from './TypicalFields.interface'
 
-export interface IExpenseDayGraph {
-	endpoint?: string
-	day: number
+export interface IExpenseDayGraph extends ITypicalFields {
+	day: Date
 	amount: number
-	expense: IExpense
+	expenseId: string
 	responsible?: IUser
 	isFact: boolean
+	taskStatusId: string
+	endpoint?: string
 }

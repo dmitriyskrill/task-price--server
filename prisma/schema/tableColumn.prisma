@@ -1,5 +1,5 @@
 model TableColumn {
-  id                 String             @id @default(uuid())
+  id                 String             @id @default(cuid())
   key                String             @unique
   name               String
   width              Int?               @default(30)

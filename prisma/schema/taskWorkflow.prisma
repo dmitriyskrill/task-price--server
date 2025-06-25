@@ -1,5 +1,5 @@
 model TaskWorkflow {
-  id                String    @id @default(uuid())
+  id                String    @id @default(cuid())
   sort              BigInt?   @default(0)
   createdAt         DateTime  @default(now()) @map("created_at")
   createdById       String    @map("created_by_id")

@@ -21,7 +21,7 @@ enum OperationType {
 }
 
 model TaskWorkflowStatusPermission {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   entity    String
   operation String

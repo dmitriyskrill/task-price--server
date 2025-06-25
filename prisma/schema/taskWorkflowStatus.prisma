@@ -1,5 +1,5 @@
 model TaskWorkflowStatus {
-  id             String       @id @default(uuid())
+  id             String       @id @default(cuid())
   taskWorkflowId String
   taskWorkflow   TaskWorkflow @relation(fields: [taskWorkflowId], references: [id])
 
