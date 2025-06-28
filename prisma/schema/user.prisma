@@ -23,6 +23,8 @@ model User {
   ownTaskWorkflowStatusPermissions TaskWorkflowStatusPermission[] @relation("OwnerTaskWorkflowStatusPermission")
   ownTaskTypes                     TaskType[]                     @relation("OwnerTaskType")
 
+  ownExpenseTypes ExpenseType[] @relation("OwnerExpenseType")
+
   @@map("user")
 }
 

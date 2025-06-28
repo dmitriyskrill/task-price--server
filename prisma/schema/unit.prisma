@@ -15,6 +15,9 @@ model Unit {
   codeId     String  @map("code_id")
   isHourUnit Boolean @default(false) @map("is_hour_type")
 
-  defaultForTaskTypes TaskType[] @relation("DefaultTaskTypeUnit")
-  admissibleForUnits  TaskType[] @relation("AdmissibleTaskTypeUnit")
+  defaultForTaskTypes    TaskType[] @relation("DefaultTaskTypeUnit")
+  admissibleForTaskTypes TaskType[] @relation("AdmissibleTaskTypeUnit")
+
+  defaultForExpenseTypes    ExpenseType[] @relation("DefaultExpenseTypeUnit")
+  admissibleForExpenseTypes ExpenseType[] @relation("AdmissibleExpenseTypeUnit")
 }
