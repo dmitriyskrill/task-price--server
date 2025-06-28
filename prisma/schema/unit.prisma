@@ -1,19 +1,19 @@
 model Unit {
-  id                String    @id @default(uuid())
-  key               String    @unique
+  id                String    @id @default(cuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
   name              String
-  sort              BigInt?
-  createdAt         DateTime  @default(now())
-  createdById       String
-  updatedAt         DateTime  @updatedAt
-  updatedById       String
-  isTrash           Boolean   @default(false)
-  dateAddingToTrash DateTime?
 
-  shortName  String
-  fullName   String
-  codeId     String
-  isHourUnit Boolean @default(false)
+  shortName  String  @map("short_name")
+  fullName   String  @map("full_name")
+  codeId     String  @map("code_id")
+  isHourUnit Boolean @default(false) @map("is_hour_type")
 
-  @@index([key])
+  defaultForTaskTypes TaskType[] @relation("DefaultTaskTypeUnit")
+  admissibleForUnits  TaskType[] @relation("AdmissibleTaskTypeUnit")
 }

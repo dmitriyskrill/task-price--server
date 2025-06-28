@@ -1,0 +1,10 @@
+model TaskTypeRelation {
+  ownId String @map("own_id")
+  forId String @map("for_id")
+
+  own TaskType @relation("ChildTaskTypes", fields: [ownId], references: [id])
+  for TaskType @relation("ForChildTaskTypes", fields: [forId], references: [id])
+
+  @@id([ownId, forId])
+  @@map("task_type_relation")
+}
