@@ -1,0 +1,30 @@
+model ExpenseType {
+  id                String    @id @default(cuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  name              String
+
+  shortName String @map("short_name")
+
+  ownerId String @map("owner_id")
+  owner   User   @relation("OwnerExpenseType", fields: [ownerId], references: [id])
+
+  defaultDayAdditionalFactor  Int @default(1) @map("default_day_additional_factor")
+  defaultDateAdditionalFactor Int @default(1) @map("defaultDateAdditionalFactor")
+
+  defaultUnitId   String? @map("default_unit_id")
+  defaultUnit     Unit?   @relation("DefaultExpenseTypeUnit", fields: [defaultUnitId], references: [id])
+  admissibleUnits Unit[]  @relation("AdmissibleExpenseTypeUnit")
+
+  isShowGraphInfo Boolean @default(true) @map("is_show_graph_info")
+  bgColor         String  @default("white") @map("bg_color")
+
+  @@unique([ownerId, name])
+  @@unique([ownerId, shortName])
+  @@map("expense_type")
+}

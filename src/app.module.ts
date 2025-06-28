@@ -11,6 +11,7 @@ import { TaskStatusModule } from '@/task-status/task-status.module'
 import { TaskWorkflowModule } from '@/task-workflow/task-workflow.module'
 import { TaskWorkflowStatusModule } from '@/task-workflow-status/task-workflow-status.module'
 import { TaskWorkflowStatusPermissionModule } from '@/task-workflow-status-permission/task-workflow-status-permission.module'
+import { ExpenseTypeModule } from '@/expense-type/expense-type.module'
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { TaskWorkflowStatusPermissionModule } from '@/task-workflow-status-permi
     TaskWorkflowModule,
     TaskWorkflowStatusModule,
     TaskWorkflowStatusPermissionModule,
-    TaskTypeModule
+    TaskTypeModule,
+    ExpenseTypeModule,
     // TaskModule,
     // TaskDayGraphModule,
     // TaskDateGraphModule,
