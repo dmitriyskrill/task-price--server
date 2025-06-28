@@ -10,29 +10,35 @@ enum EntityType {
 
 enum OperationType {
   CREATE
-  CREATE_Many
+  CREATE_MANY
   READ
   PATCH
-  PATCH_Many
+  PATCH_MANY
   UPDATE
-  UPDATE_Many
+  UPDATE_MANY
   DELETE
-  DELETE_Many
+  DELETE_MANY
 }
 
 model TaskWorkflowStatusPermission {
-  id String @id @default(cuid())
+  id                String    @id @default(cuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  entity    EntityType
+  operation OperationType
+  isPlan    Boolean @map("is_plan")
 
-  entity    String
-  operation String
-  isPlan    Boolean
+  taskWorkflowStatusId String             @map("task_workflow_status_id")
+  taskWorkflowStatus   TaskWorkflowStatus @relation(fields: [taskWorkflowStatusId], references: [id])
 
-  workflowStatusId String
-  workflowStatus   TaskWorkflowStatus @relation(fields: [workflowStatusId], references: [id])
-
-  ownerId String?
+  ownerId String? @map("owner_id")
   owner   User?   @relation("OwnerTaskWorkflowStatusPermission", fields: [ownerId], references: [id])
 
-  @@unique([workflowStatusId, entity, operation, ownerId])
+  @@unique([taskWorkflowStatusId, entity, operation, ownerId])
   @@map("task_workflow_status_permission")
 }

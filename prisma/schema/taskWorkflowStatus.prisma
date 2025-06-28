@@ -1,22 +1,30 @@
 model TaskWorkflowStatus {
-  id             String       @id @default(cuid())
-  taskWorkflowId String
+  id                String    @id @default(cuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+
+  taskWorkflowId String       @map("task_workflow_id")
   taskWorkflow   TaskWorkflow @relation(fields: [taskWorkflowId], references: [id])
 
-  taskStatusId String
+  taskStatusId String     @map("task_status_id")
   taskStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
 
-  ownerId String
+  ownerId String @map("owner_id")
   owner   User?  @relation("OwnerTaskWorkflowStatus", fields: [ownerId], references: [id])
 
-  isShowMenuBtnInPlanExpenseRow              Boolean?
-  isShowDeleteBtnInTaskRow                   Boolean?
-  isShowOpenLikeMainBtnInTaskRow             Boolean?
-  isShowExpenseCreateMenuAtControlHead       Boolean?
-  isShowTaskCreateMenuAtControlHead          Boolean?
-  isShowPlanElementByDefault                 Boolean?
-  isShowFactElementByDefault                 Boolean?
-  isCreateFactElementAfterSelectedThisStatus Boolean?
+  isShowMenuBtnInPlanExpenseRow              Boolean? @map("is_show_menu_btn_in_plan_expense_row ")
+  isShowDeleteBtnInTaskRow                   Boolean? @map("is_show_delete_btn_in_task_row")
+  isShowOpenLikeMainBtnInTaskRow             Boolean? @map("is_show_open_like_main_btn_in_task_row")
+  isShowExpenseCreateMenuAtControlHead       Boolean? @map("is_show_expense_create_menu_at_control_head")
+  isShowTaskCreateMenuAtControlHead          Boolean? @map("is_show_task_create_menu_at_control_head")
+  isShowPlanElementByDefault                 Boolean? @map("is_show_plan_element_by_default")
+  isShowFactElementByDefault                 Boolean? @map("is_show_fact_element_by_default")
+  isCreateFactElementAfterSelectedThisStatus Boolean? @map("is_create_fact_element_after_selected_this_status")
 
   validWorkflowStatuses    TaskWorkflowStatusRelation[] @relation("OwnTaskWorkflowStatus")
   validForWorkflowStatuses TaskWorkflowStatusRelation[] @relation("ForTaskWorkflowStatus")

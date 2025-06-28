@@ -1,0 +1,47 @@
+model TaskType {
+  id                String    @id @default(cuid())
+  sort              BigInt?   @default(0)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  name              String
+
+  shortName String @map("short_name")
+
+  ownerId String @map("owner_id")
+  owner   User   @relation("OwnerTaskType", fields: [ownerId], references: [id])
+
+  childTaskTypes    TaskTypeRelation[] @relation("ChildTaskTypes")
+  childForTaskTypes TaskTypeRelation[] @relation("ForChildTaskTypes")
+
+  isOpenLikeMain       Boolean @default(true) @map("is_open_like_main")
+  isCanConnectToObject Boolean @default(true) @map("is_can_connect_to_object")
+  isCanContainExpense  Boolean @default(true) @map("is_can_contain_expense")
+  isShowGraphInfo      Boolean @default(true) @map("is_show_graph_info")
+  isTopLevel           Boolean @default(true) @map("is_top_level")
+
+  defaultDayAdditionalFactor  Int @default(1) @map("default_day_additional_factor")
+  defaultDateAdditionalFactor Int @default(1) @map("defaultDateAdditionalFactor")
+
+  defaultUnitId   String? @map("default_unit_id")
+  defaultUnit     Unit?   @relation("DefaultTaskTypeUnit", fields: [defaultUnitId], references: [id])
+  admissibleUnits Unit[]  @relation("AdmissibleTaskTypeUnit")
+
+  defaultProfitPercent                  Int @default(1) @map("default_profit_percent")
+  defaultGeneralBusinessExpensesPercent Int @default(1) @map("default_general_business_expenses_percent")
+  defaultUnforeseenExpensesPercent      Int @default(1) @map("default_unforeseen_expenses_percent")
+  defaultVatPercent                     Int @default(1) @map("default_default_vat_percent")
+
+  fontSize   Int @default(20) @map("font_size")
+  fontWeight Int @default(500) @map("font_weight")
+
+  taskTreeIsShowChildBtn Boolean @default(true) @map("task_tree_is_show_child_btn")
+  taskTreeIsShowAddBtn   Boolean @default(true) @map("task_tree_is_show_add_btn")
+
+  @@unique([ownerId, name])
+  @@unique([ownerId, shortName])
+  @@map("task_type")
+}

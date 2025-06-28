@@ -11,7 +11,7 @@ model TaskStatus {
 
   shortName String @map("short_name")
 
-  ownerId String
+  ownerId String @map("owner_id")
   owner   User   @relation("OwnerTaskStatus", fields: [ownerId], references: [id])
 
   taskWorkflowStatuses TaskWorkflowStatus[]
