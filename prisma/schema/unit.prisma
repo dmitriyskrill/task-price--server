@@ -1,5 +1,6 @@
 model Unit {
   id                String    @id @default(cuid())
+  key               String    @unique
   sort              BigInt?   @default(0)
   createdAt         DateTime  @default(now()) @map("created_at")
   createdById       String    @map("created_by_id")

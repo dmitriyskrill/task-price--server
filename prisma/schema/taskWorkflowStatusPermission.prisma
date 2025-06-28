@@ -29,7 +29,6 @@ model TaskWorkflowStatusPermission {
   updatedById       String    @map("updated_by_id")
   isTrash           Boolean   @default(false) @map("is_trash")
   dateAddingToTrash DateTime? @map("date_adding_to_trash")
-
   entity    EntityType
   operation OperationType
   isPlan    Boolean @map("is_plan")

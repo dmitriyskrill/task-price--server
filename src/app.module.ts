@@ -11,7 +11,13 @@ import { TaskStatusModule } from '@/task-status/task-status.module'
 import { TaskWorkflowModule } from '@/task-workflow/task-workflow.module'
 import { TaskWorkflowStatusModule } from '@/task-workflow-status/task-workflow-status.module'
 import { TaskWorkflowStatusPermissionModule } from '@/task-workflow-status-permission/task-workflow-status-permission.module'
+
 import { ExpenseTypeModule } from '@/expense-type/expense-type.module'
+import { TaskDateGraphModule } from './task/task-date-graph/task-date-graph.module'
+import { TaskDayGraphModule } from './task/task-day-graph/task-day-graph.module'
+import { ExpenseDateGraphModule } from './expense/expense-date-graph/expense-date-graph.module'
+import { ExpenseDayGraphModule } from './expense/expense-day-graph/expense-day-graph.module'
+
 
 @Module({
   imports: [
@@ -34,9 +40,11 @@ import { ExpenseTypeModule } from '@/expense-type/expense-type.module'
     TaskTypeModule,
     ExpenseTypeModule,
     // TaskModule,
-    // TaskDayGraphModule,
-    // TaskDateGraphModule,
+    TaskDayGraphModule,
+    TaskDateGraphModule,
     // ExpenseModule,
+    ExpenseDateGraphModule,
+    ExpenseDayGraphModule
   ],
 })
 export class AppModule {}

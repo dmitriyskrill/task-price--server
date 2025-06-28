@@ -9,8 +9,8 @@ import { TaskDateGraphRepository } from '@/task/task-date-graph/db/task-date-gra
 export class TaskDateGraphService {
 	constructor(private taskDateGraphRepository: TaskDateGraphRepository) {}
 
-	async create(taskDateGraphData: TaskDateGraphDto, taskId: string) {
-		await this.taskDateGraphRepository.create(taskDateGraphData, taskId)
+	async create(taskDateGraphData: any) {
+		await this.taskDateGraphRepository.create(taskDateGraphData)
 	}
 
 	async update(taskDateGraphData: UpdateTaskDateGraphDto, id: string) {

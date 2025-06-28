@@ -6,8 +6,11 @@ export interface taskDateGraph extends ITypicalFields{
 
 	day: number 
 	amount: number 
-	task: string
+	taskId: string
 	isFact: boolean
 	owner: IUser 
 	
 }
+
+
+
