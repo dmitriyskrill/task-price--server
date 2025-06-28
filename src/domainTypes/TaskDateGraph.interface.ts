@@ -6,7 +6,7 @@ export interface ITaskDateGraph extends ITypicalFields {
 	endpoint?: string // Default: 'taskDateGraph'
 	date: Date
 	amount: number
-	task: ITask
+	taskId: string
 	isFact: boolean
 	owner: IUser
 }

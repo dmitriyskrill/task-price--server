@@ -1,26 +1,35 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+	ConflictException,
+	Injectable,
+	NotFoundException
+} from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
 import {
 	TaskDateGraphDto,
 	UpdateTaskDateGraphDto
 } from '@/task/task-date-graph/dto/task-date-graph.dto'
 import { Prisma } from '@prisma/client'
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 
 @Injectable()
-export class TaskDateGraphRepository  {
+export class TaskDateGraphRepository {
 	constructor(private prisma: PrismaService) {}
 
-	async create(taskDateGraphData: TaskDateGraphDto, taskId: string) {
-		return this.prisma.taskDateGraph.create({
-			data: {
-				...taskDateGraphData,
-				task: {
-					connect: {
-						id: taskId
-					}
+	async create(taskDateGraphData: any) {
+		try {
+			return this.prisma.taskDateGraph.create({
+				data: taskDateGraphData
+			})
+		} catch (error) {
+			if (error instanceof PrismaClientKnownRequestError) {
+				if (error.code === 'P2002') {
+					throw new ConflictException(
+						`Unique constraint failed on the fields: ${error.meta.target}`
+					)
 				}
 			}
-		})
+			throw error
+		}
 	}
 
 	async update(taskDateGraphData: UpdateTaskDateGraphDto, id: string) {

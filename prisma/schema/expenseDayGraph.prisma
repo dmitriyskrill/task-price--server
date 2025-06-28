@@ -1,11 +1,21 @@
 model ExpenseDayGraph {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  sort      BigInt?  @default(0)
 
-  day       DateTime
-  expense   Expense  @relation(fields: [expenseId], references: [id])
-  expenseId String
+  day          DateTime
+  amount       Int
+  taskStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
+  taskStatusId String
+  expense      Expense    @relation(fields: [expenseId], references: [id])
+  expenseId    String
+
+  endpoint String?
 
   @@map("expense_day_graph")
 }
