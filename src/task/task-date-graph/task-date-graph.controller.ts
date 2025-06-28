@@ -7,11 +7,12 @@ import { IdParamDto } from './dto/id.params.dto';
 export class TaskDateGraphController {
  constructor(private readonly taskDateGraphService: TaskDateGraphService) {}
 
- // @Post()
- // @HttpCode(200)
- // async create(@Body() dto: TaskDateGraphDto) {
- //   return await this.taskDateGraphService.create(dto);
- // }
+ @Post()
+ @HttpCode(200)
+
+ async create(@Body() dto: any) {
+   return await this.taskDateGraphService.create(dto);
+ }
 
  @Patch()
  @HttpCode(204)

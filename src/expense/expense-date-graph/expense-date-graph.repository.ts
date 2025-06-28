@@ -23,7 +23,7 @@ export class ExpenseDateGraphRepository {
 	}
 
 
-	async create(dto: ExpenseDateGraph): Promise<ExpenseDateGraph> {
+	async create(dto: any): Promise<ExpenseDateGraph> {
 		try {
 			return await this.prisma.expenseDateGraph.create({
 				data: dto

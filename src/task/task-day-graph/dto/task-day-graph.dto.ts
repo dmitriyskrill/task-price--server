@@ -38,6 +38,11 @@ export class TaskDayGraphDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly taskId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly endpoint: string
 }
 
 
@@ -71,4 +76,10 @@ export class UpdateTaskDayGraphDto {
   @IsOptional()
   @IsString()
   readonly taskId?: string;
+
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly endpoint: string
 }

@@ -25,7 +25,8 @@ export class ExpenseDateGraphService {
 
 	async create(dto: IExpenseDateGraph) {
 		const baseEntity = <Partial<IExpenseDateGraph>>{
-			sort: generateSort()
+			sort: generateSort(),
+			endpoint: 'expense-date-graph'
 		}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.expenseDateGraphRepository.create(newDto)

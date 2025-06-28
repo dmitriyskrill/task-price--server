@@ -11,5 +11,6 @@ model TaskDayGraph {
   task   Task   @relation(fields: [taskId], references: [id])
   taskId String @map("task_id")
 
+  endpoint String?
   @@map("task_day_graph")
 }
