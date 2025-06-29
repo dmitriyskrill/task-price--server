@@ -13,10 +13,13 @@ model Expense {
   ownerId String @map("owner_id")
   owner   User   @relation("OwnerExpense", fields: [ownerId], references: [id])
 
+  unitId String @map("unit_id")
+  unit   Unit   @relation(fields: [unitId], references: [id])
+
   isFact Boolean @default(false) @map("is_fact")
 
   taskId String @map("task_id")
-  task   Task  @relation(fields: [taskId], references: [id])
+  task   Task   @relation(fields: [taskId], references: [id])
 
   expenseTypeId String      @map("expense_type_id")
   expenseType   ExpenseType @relation(fields: [expenseTypeId], references: [id])

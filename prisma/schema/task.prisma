@@ -13,6 +13,9 @@ model Task {
   description String
   isCompleted Boolean @default(false) @map("is_completed")
 
+  unitId String @map("unit_id")
+  unit   Unit   @relation(fields: [unitId], references: [id])
+
   taskId String? @map("task_id")
   task   Task?   @relation("TaskTreeRelation", fields: [taskId], references: [id])
   tasks  Task[]  @relation("TaskTreeRelation")

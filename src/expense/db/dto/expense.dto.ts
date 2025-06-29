@@ -19,6 +19,15 @@ export class ExpenseDto {
 	@ApiProperty()
 	taskId: string
 
+	@IsString()
+	@ApiProperty()
+	unitId: string
+
+	@IsOptional()
+	@IsString()
+	@ApiProperty()
+	expenseId?: string
+
 }
 
 export class UpdateExpenseDto {

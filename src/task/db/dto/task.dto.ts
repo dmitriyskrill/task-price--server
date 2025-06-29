@@ -17,6 +17,15 @@ export class TaskDto {
 	@IsString()
 	@ApiProperty()
 	description: string
+
+	@IsString()
+	@ApiProperty()
+	unitId: string
+
+	@IsOptional()
+	@IsString()
+	@ApiProperty()
+	taskId?: string
 }
 
 export class UpdateTaskDto {
