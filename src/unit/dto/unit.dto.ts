@@ -29,6 +29,9 @@ export class UnitDto {
 	@IsString()
 	codeId?: string
 
+	@IsString()
+	key?: string
+
 	@IsBoolean()
 	@IsOptional()
 	isTrash?: boolean = false

@@ -1,8 +1,12 @@
-import { Module } from '@nestjs/common';
-import { ExpenseDateGraphModule } from './expense-date-graph/expense-date-graph.module';
-import { ExpenseDayGraphModule } from './expense-day-graph/expense-day-graph.module';
+import { Module } from '@nestjs/common'
+import { PrismaService } from '@/prisma.service'
+import { ExpenseController } from '@/expense/expense.controller'
+import { ExpenseService } from '@/expense/expense.service'
+import { ExpenseRepository } from '@/expense/db/repository/expense.repository'
 
 @Module({
-  imports: [ExpenseDateGraphModule, ExpenseDayGraphModule]
+	controllers: [ExpenseController],
+	providers: [ExpenseService, ExpenseRepository, PrismaService],
+	exports: [ExpenseService]
 })
 export class ExpenseModule {}

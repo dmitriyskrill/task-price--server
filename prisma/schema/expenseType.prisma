@@ -14,6 +14,8 @@ model ExpenseType {
   ownerId String @map("owner_id")
   owner   User   @relation("OwnerExpenseType", fields: [ownerId], references: [id])
 
+  expenses Expense[]
+
   defaultDayAdditionalFactor  Int @default(1) @map("default_day_additional_factor")
   defaultDateAdditionalFactor Int @default(1) @map("defaultDateAdditionalFactor")
 

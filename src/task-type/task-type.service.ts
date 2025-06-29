@@ -27,7 +27,7 @@ export class TaskTypeService {
     return this.taskTypeRepository.create(newDto)
   }
 
-  async patch(id: string, data: Partial<UserModel>) {
+  async patch(id: string, data: Partial<TaskType>) {
     return this.taskTypeRepository.patch(id, data)
   }
 

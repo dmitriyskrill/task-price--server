@@ -6,15 +6,18 @@ model ExpenseDateGraph {
   updatedById       String    @map("updated_by_id")
   isTrash           Boolean   @default(false) @map("is_trash")
   dateAddingToTrash DateTime? @map("date_adding_to_trash")
-  sort      BigInt?  @default(0)
+  sort              BigInt?   @default(0)
 
-  date         DateTime
-  amount       Int
-  taskStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
-  taskStatusId String
-  expense      Expense    @relation(fields: [expenseId], references: [id])
-  expenseId    String 
+  date   DateTime
+  amount Int
 
-  endpoint String?
+  isFact Boolean @default(false) @map("is_fact")
+
+  expense   Expense @relation(fields: [expenseId], references: [id])
+  expenseId String  @map("expense_id")
+
+  ownerId String @map("owner_id")
+  owner   User   @relation("OwnerExpenseDateGraph", fields: [ownerId], references: [id])
+
   @@map("expense_date_graph")
 }

@@ -1,14 +1,7 @@
 import { Injectable } from '@nestjs/common'
-// import {
-// 	CreateExpenseDayGraphDto,
-// 	UpdateExpenseDayGraphDto
-// } from './dto/expenseDayGraph.dto'
-import { ExpenseDayGraphRepository } from '@/expense/expense-day-graph/expense-day-graph.repository'
-import { IExpenseDayGraph } from '@/domainTypes/ExpenseDayGraph.interface'
+import { ExpenseDayGraphRepository } from './db/expense-day-graph.repository'
 import { mapDtoToEntity } from '@/utils/mapper.util'
 import { ExpenseDayGraph } from '@prisma/client'
-import { UserModel } from '@/user/db/User.model'
-import { generateSort } from '@/utils/generateSort'
 
 @Injectable()
 export class ExpenseDayGraphService {
@@ -23,15 +16,13 @@ export class ExpenseDayGraphService {
 		return this.expenseDayGraphRepository.getById(id)
 	}
 
-	async create(dto: IExpenseDayGraph) {
-		const baseEntity = <Partial<IExpenseDayGraph>>{
-			sort: generateSort(),
-		}
+	async create(dto: any) {
+		const baseEntity = <Partial<ExpenseDayGraph>>{}
 		const newDto = mapDtoToEntity(dto, baseEntity)
 		return this.expenseDayGraphRepository.create(newDto)
 	}
 
-	async patch(id: string, data: Partial<UserModel>) {
+	async patch(id: string, data: Partial<ExpenseDayGraph>) {
 		return this.expenseDayGraphRepository.patch(id, data)
 	}
 
@@ -44,4 +35,4 @@ export class ExpenseDayGraphService {
 	async delete(id: string) {
 		return this.expenseDayGraphRepository.delete(id)
 	}
-}
+} 

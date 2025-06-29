@@ -15,8 +15,6 @@ model TaskStatus {
   owner   User   @relation("OwnerTaskStatus", fields: [ownerId], references: [id])
 
   taskWorkflowStatuses TaskWorkflowStatus[]
-  ExpenseDateGraph     ExpenseDateGraph[]
-  ExpenseDayGraph      ExpenseDayGraph[]
 
   // Делаем проверку уникальности названий для пользователя
   @@unique([ownerId, name])

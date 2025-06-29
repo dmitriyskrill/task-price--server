@@ -1,18 +1,32 @@
 model Expense {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  sort              BigInt?   @default(0)
 
-  name        String
-  shortName   String
-  isCompleted Boolean
+  name String
 
-  userId String
+  ownerId String @map("owner_id")
+  owner   User   @relation("OwnerExpense", fields: [ownerId], references: [id])
 
-  isTrash           Boolean
-  isPlan            Boolean
-  taskId            String
-  task              Task?              @relation(fields: [taskId], references: [id])
+  isFact Boolean @default(false) @map("is_fact")
+
+  taskId String @map("task_id")
+  task   Task  @relation(fields: [taskId], references: [id])
+
+  expenseTypeId String      @map("expense_type_id")
+  expenseType   ExpenseType @relation(fields: [expenseTypeId], references: [id])
+
+  // Фактовая затрата (isFact=true) может ссылаться только на одну плановую (isFact=false).
+  // Плановая затрата может содержать несколько фактовых.
+  expenseId String?   @map("expense_id")
+  expense   Expense?  @relation("PlanFactExpense", fields: [expenseId], references: [id])
+  expenses  Expense[] @relation("PlanFactExpense")
+
   ExpenseDateGraphs ExpenseDateGraph[]
   ExpenseDayGraphs  ExpenseDayGraph[]
 

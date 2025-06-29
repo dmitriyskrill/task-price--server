@@ -1,18 +1,29 @@
 model Task {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  sort              BigInt?   @default(0)
 
   name        String
-  shortName   String
-  isCompleted Boolean
+  shortName   String  @map("short_name")
+  description String
+  isCompleted Boolean @default(false) @map("is_completed")
+
+  taskId String? @map("task_id")
+  task   Task?   @relation("TaskTreeRelation", fields: [taskId], references: [id])
+  tasks  Task[]  @relation("TaskTreeRelation")
 
   taskDayGraphs  TaskDayGraph[]
   taskDateGraphs TaskDateGraph[]
-  expenses       Expense[]
+
+  expenses Expense[]
 
   owner   User   @relation("OwnerTask", fields: [ownerId], references: [id])
-  ownerId String
+  ownerId String @map("owner_id")
 
   @@map("task")
 }

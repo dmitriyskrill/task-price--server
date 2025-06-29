@@ -9,17 +9,7 @@ import {
 } from 'class-validator';
 
 export class TaskDateGraphDto {
-  @IsOptional()
   @IsISO8601()
-  @ApiProperty()
-  readonly createdAt?: Date;
-
-  @IsOptional()
-  @IsISO8601()
-  @ApiProperty()
-  readonly updatedAt?: Date;
-
-  @IsInt()
   @ApiProperty()
   @IsNotEmpty()
   readonly date: Date;
@@ -34,9 +24,17 @@ export class TaskDateGraphDto {
   @IsNotEmpty()
   readonly isFact: boolean;
 
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly taskId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly ownerId: string;
+
 }
-
-
 
 export class UpdateTaskDateGraphDto {
   @IsOptional()
@@ -50,7 +48,7 @@ export class UpdateTaskDateGraphDto {
   readonly updatedAt?: Date;
 
   @IsOptional()
-  @IsInt()
+  @IsISO8601()
   @ApiProperty()
   readonly date?: Date;
 
@@ -64,4 +62,12 @@ export class UpdateTaskDateGraphDto {
   @ApiProperty()
   readonly isFact?: boolean;
 
-}
+  @IsOptional()
+  @IsString()
+  readonly taskId?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly endpoint: string
+} 

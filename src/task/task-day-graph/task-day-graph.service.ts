@@ -1,69 +1,38 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '@/prisma.service';
-import { Prisma } from '@prisma/client';
-import { TaskDayGraphDto, UpdateTaskDayGraphDto } from './dto/task-day-graph.dto';
+import { Injectable } from '@nestjs/common'
+import { TaskDayGraphRepository } from './db/task-day-graph.repository'
+import { mapDtoToEntity } from '@/utils/mapper.util'
+import { TaskDayGraph } from '@prisma/client'
 
 @Injectable()
 export class TaskDayGraphService {
-  constructor(private prisma: PrismaService) {}
+	constructor(private readonly taskDayGraphRepository: TaskDayGraphRepository) {}
 
-  async create(taskDayGraphData: TaskDayGraphDto) {
-    return await this.prisma.taskDayGraph.create({
-      data: {
-        ...taskDayGraphData
-      } 
-    });
-  }
+	async get(filter: Record<string, any> = {}) {
+		return this.taskDayGraphRepository.get(filter)
+	}
 
-  async update(taskDayGraphData: UpdateTaskDayGraphDto, id: string) {
-   try {
-   return await this.prisma.taskDayGraph.update({
-      where: {
-        id
-      },
-      data: {
-        ...taskDayGraphData
-      }
-    })
-  } catch(error: any) {
-    if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2025'
-    ) {
-        throw new NotFoundException(`Record with this id not found.`);
-    }
-    throw error;
-  }
-  }
 
-  async delete(id: string) {
-    try {
-    return await this.prisma.taskDayGraph.delete({
-      where: {
-        id
-      }
-    });
-    } catch(error: any) {
-      if (
-          error instanceof Prisma.PrismaClientKnownRequestError &&
-          error.code === 'P2025'
-      ) {
-          throw new NotFoundException(`Record with this id not found.`);
-      }
-      throw error; 
-    }
-  }
+	async getById(id: string) {
+		return this.taskDayGraphRepository.getById(id)
+	}
 
-  async findAll() {
-    return await this.prisma.taskDayGraph.findMany();
-  }
+	async create(dto: any) {
+		const baseEntity = <Partial<TaskDayGraph>>{}
+		const newDto = mapDtoToEntity(dto, baseEntity)
+		return this.taskDayGraphRepository.create(newDto)
+	}
 
-  async findById(id: string) {
-    return await this.prisma.taskDayGraph.findUnique({
-      where: {
-        id
-      }
-    });
-  } 
+	async patch(id: string, data: Partial<TaskDayGraph>) {
+		return this.taskDayGraphRepository.patch(id, data)
+	}
 
+	async patchMany(filter: Record<string, any>, update: Partial<TaskDayGraph>) {
+		const baseEntity = <Partial<TaskDayGraph>>{}
+		const newDto = mapDtoToEntity(update, baseEntity)
+		return this.taskDayGraphRepository.updateMany(filter, newDto)
+	}
+
+	async delete(id: string) {
+		return this.taskDayGraphRepository.delete(id)
+	}
 }

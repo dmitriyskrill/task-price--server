@@ -6,18 +6,20 @@ import { getGoogleRecaptchaConfig } from './config/google-recaptcha.config'
 import { UserModule } from '@/user/user.module'
 import { TableColumnModule } from '@/table-column/table-column.module'
 import { UnitModule } from './unit/unit.module'
+
+import { TaskModule } from '@/task/task.module'
 import { TaskTypeModule } from '@/task-type/task-type.module'
 import { TaskStatusModule } from '@/task-status/task-status.module'
 import { TaskWorkflowModule } from '@/task-workflow/task-workflow.module'
 import { TaskWorkflowStatusModule } from '@/task-workflow-status/task-workflow-status.module'
 import { TaskWorkflowStatusPermissionModule } from '@/task-workflow-status-permission/task-workflow-status-permission.module'
-
-import { ExpenseTypeModule } from '@/expense-type/expense-type.module'
 import { TaskDateGraphModule } from './task/task-date-graph/task-date-graph.module'
 import { TaskDayGraphModule } from './task/task-day-graph/task-day-graph.module'
+
+import { ExpenseModule } from '@/expense/expense.module'
+import { ExpenseTypeModule } from '@/expense-type/expense-type.module'
 import { ExpenseDateGraphModule } from './expense/expense-date-graph/expense-date-graph.module'
 import { ExpenseDayGraphModule } from './expense/expense-day-graph/expense-day-graph.module'
-
 
 @Module({
   imports: [
@@ -33,16 +35,19 @@ import { ExpenseDayGraphModule } from './expense/expense-day-graph/expense-day-g
     UserModule,
     TableColumnModule,
     UnitModule,
+
+
+    TaskModule,
+    TaskTypeModule,
     TaskStatusModule,
     TaskWorkflowModule,
     TaskWorkflowStatusModule,
     TaskWorkflowStatusPermissionModule,
-    TaskTypeModule,
-    ExpenseTypeModule,
-    // TaskModule,
     TaskDayGraphModule,
     TaskDateGraphModule,
-    // ExpenseModule,
+
+    ExpenseModule,
+    ExpenseTypeModule,
     ExpenseDateGraphModule,
     ExpenseDayGraphModule
   ],

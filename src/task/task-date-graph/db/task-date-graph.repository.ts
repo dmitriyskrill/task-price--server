@@ -1,24 +1,30 @@
-import {
-	ConflictException,
-	Injectable,
-	NotFoundException
-} from '@nestjs/common'
+import { ConflictException, Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
-import {
-	TaskDateGraphDto,
-	UpdateTaskDateGraphDto
-} from '@/task/task-date-graph/dto/task-date-graph.dto'
-import { Prisma } from '@prisma/client'
+import { TaskDateGraph } from '@prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 
 @Injectable()
 export class TaskDateGraphRepository {
-	constructor(private prisma: PrismaService) {}
+	constructor(
+		private readonly prisma: PrismaService,
+	) {}
 
-	async create(taskDateGraphData: any) {
+	async get(filter: Record<string, any> = {}) {
+		return this.prisma.taskDateGraph.findMany({
+			where: filter
+		})
+	}
+
+	async getById(id: string) {
+		return this.prisma.taskDateGraph.findUnique({
+			where: { id }
+		})
+	}
+
+	async create(dto: TaskDateGraph): Promise<TaskDateGraph> {
 		try {
-			return this.prisma.taskDateGraph.create({
-				data: taskDateGraphData
+			return await this.prisma.taskDateGraph.create({
+				data: dto
 			})
 		} catch (error) {
 			if (error instanceof PrismaClientKnownRequestError) {
@@ -32,54 +38,27 @@ export class TaskDateGraphRepository {
 		}
 	}
 
-	async update(taskDateGraphData: UpdateTaskDateGraphDto, id: string) {
-		try {
-			return await this.prisma.taskDateGraph.update({
-				where: {
-					id
-				},
-				data: {
-					...taskDateGraphData
-				}
-			})
-		} catch (error: any) {
-			if (
-				error instanceof Prisma.PrismaClientKnownRequestError &&
-				error.code === 'P2025'
-			) {
-				throw new NotFoundException(`Record with this id not found.`)
-			}
-			throw error
-		}
-	}
-
-	async delete(id: string) {
-		try {
-			return await this.prisma.taskDateGraph.delete({
-				where: {
-					id
-				}
-			})
-		} catch (error: any) {
-			if (
-				error instanceof Prisma.PrismaClientKnownRequestError &&
-				error.code === 'P2025'
-			) {
-				throw new NotFoundException(`Record with this id not found.`)
-			}
-			throw error
-		}
-	}
-
-	async getAll() {
-		return this.prisma.taskDateGraph.findMany()
-	}
-
-	async getById(id: string) {
-		return this.prisma.taskDateGraph.findUnique({
-			where: {
-				id
+	async updateMany(filter: Record<string, any>, data: any) {
+		return this.prisma.taskDateGraph.updateMany({
+			where: filter,
+			data: {
+				...data
 			}
 		})
 	}
-}
+
+	async patch(id: string, data: Partial<TaskDateGraph>) {
+		return this.prisma.taskDateGraph.update({
+			where: {
+				id
+			},
+			data
+		})
+	}
+
+	async delete(id: string) {
+		return this.prisma.taskDateGraph.delete({
+			where: { id }
+		})
+	}
+} 

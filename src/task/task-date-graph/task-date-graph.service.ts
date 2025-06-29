@@ -1,31 +1,38 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
-import {
-	TaskDateGraphDto,
-	UpdateTaskDateGraphDto
-} from './dto/task-date-graph.dto'
-import { TaskDateGraphRepository } from '@/task/task-date-graph/db/task-date-graph.repository'
+import { Injectable } from '@nestjs/common'
+import { TaskDateGraphRepository } from './db/task-date-graph.repository'
+import { mapDtoToEntity } from '@/utils/mapper.util'
+import { TaskDateGraph } from '@prisma/client'
 
 @Injectable()
 export class TaskDateGraphService {
-	constructor(private taskDateGraphRepository: TaskDateGraphRepository) {}
+	constructor(private readonly taskDateGraphRepository: TaskDateGraphRepository) {}
 
-	async create(taskDateGraphData: any) {
-		await this.taskDateGraphRepository.create(taskDateGraphData)
+	async get(filter: Record<string, any> = {}) {
+		return this.taskDateGraphRepository.get(filter)
 	}
 
-	async update(taskDateGraphData: UpdateTaskDateGraphDto, id: string) {
-		await this.taskDateGraphRepository.update(taskDateGraphData, id)
+
+	async getById(id: string) {
+		return this.taskDateGraphRepository.getById(id)
+	}
+
+	async create(dto: any) {
+		const baseEntity = <Partial<TaskDateGraph>>{}
+		const newDto = mapDtoToEntity(dto, baseEntity)
+		return this.taskDateGraphRepository.create(newDto)
+	}
+
+	async patch(id: string, data: Partial<TaskDateGraph>) {
+		return this.taskDateGraphRepository.patch(id, data)
+	}
+
+	async patchMany(filter: Record<string, any>, update: Partial<TaskDateGraph>) {
+		const baseEntity = <Partial<TaskDateGraph>>{}
+		const newDto = mapDtoToEntity(update, baseEntity)
+		return this.taskDateGraphRepository.updateMany(filter, newDto)
 	}
 
 	async delete(id: string) {
-		await this.taskDateGraphRepository.delete(id)
+		return this.taskDateGraphRepository.delete(id)
 	}
-
-	async getAll() {
-		await this.taskDateGraphRepository.getAll()
-	}
-
-	async getById(id: string) {
-		await this.taskDateGraphRepository.getById(id)
-	}
-}
+} 

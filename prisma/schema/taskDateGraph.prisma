@@ -1,16 +1,23 @@
 model TaskDateGraph {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  sort      BigInt?  @default(0)
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now()) @map("created_at")
+  createdById       String    @map("created_by_id")
+  updatedAt         DateTime  @updatedAt @map("update_at")
+  updatedById       String    @map("updated_by_id")
+  isTrash           Boolean   @default(false) @map("is_trash")
+  dateAddingToTrash DateTime? @map("date_adding_to_trash")
+  sort              BigInt?   @default(0)
 
   date   DateTime
   amount Int
-  isFact Boolean
 
-  task   Task   @relation(fields: [taskId], references: [id])
+  isFact Boolean @default(false) @map("is_fact")
+
   taskId String @map("task_id")
+  task   Task   @relation(fields: [taskId], references: [id])
 
-  endpoint String?
+  ownerId String @map("owner_id")
+  owner   User   @relation("OwnerTaskDateGraph", fields: [ownerId], references: [id])
+
   @@map("task_date_graph")
 }

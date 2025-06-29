@@ -22,8 +22,13 @@ model User {
   ownTaskWorkflowStatuses          TaskWorkflowStatus[]           @relation("OwnerTaskWorkflowStatus")
   ownTaskWorkflowStatusPermissions TaskWorkflowStatusPermission[] @relation("OwnerTaskWorkflowStatusPermission")
   ownTaskTypes                     TaskType[]                     @relation("OwnerTaskType")
+  ownTaskDayGraphs                 TaskDayGraph[]                 @relation("OwnerTaskDayGraph")
+  ownTaskDateGraphs                TaskDateGraph[]                @relation("OwnerTaskDateGraph")
 
-  ownExpenseTypes ExpenseType[] @relation("OwnerExpenseType")
+  ownExpenses          Expense[]          @relation("OwnerExpense")
+  ownExpenseTypes      ExpenseType[]      @relation("OwnerExpenseType")
+  ownExpenseDayGraphs  ExpenseDayGraph[]  @relation("OwnerExpenseDayGraph")
+  ownExpenseDateGraphs ExpenseDateGraph[] @relation("OwnerExpenseDateGraph")
 
   @@map("user")
 }

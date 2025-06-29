@@ -21,28 +21,33 @@ export class TaskRepository implements ITaskRepository {
 		}
 	}
 
-	async getAll(userId: string): Promise<Task[]> {
+	async getAll(
+		// userId: string
+	): Promise<Task[]> {
 		try {
 			return await this.prisma.task.findMany({
-				where: {
-					ownerId: userId
-				}
+				// where: {
+				// ownerId: userId
+				// }
 			})
 		} catch (e) {
 			throw e
 		}
 	}
 
-	async create(dto: TaskDto, userId: string): Promise<Task> {
+	async create(
+		dto: any,
+		// userId: string
+	): Promise<Task> {
 		try {
 			return await this.prisma.task.create({
 				data: {
 					...dto,
-					owner: {
-						connect: {
-							id: userId
-						}
-					}
+					// owner: {
+					// 	connect: {
+					// 		id: userId
+					// 	}
+					// }
 				}
 			})
 		} catch (e) {
@@ -53,12 +58,12 @@ export class TaskRepository implements ITaskRepository {
 	async update(
 		dto: UpdateTaskDto,
 		taskId: string,
-		userId: string
+		// userId: string
 	): Promise<Task> {
 		try {
 			return await this.prisma.task.update({
 				where: {
-					ownerId: userId,
+					// ownerId: userId,
 					id: taskId
 				},
 				data: dto

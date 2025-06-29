@@ -1,31 +1,29 @@
 import { ConflictException, Injectable } from '@nestjs/common'
 import { PrismaService } from '@/prisma.service'
-//import { UpdateExpenseDayGraphDto } from '@/expenseDayGraph/dto/expenseDayGraph.dto'
-import { ExpenseDayGraph } from '@prisma/client'
+import { ExpenseDateGraph } from '@prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library'
 
 @Injectable()
-export class ExpenseDayGraphRepository {
+export class ExpenseDateGraphRepository {
 	constructor(
 		private readonly prisma: PrismaService,
 	) {}
 
 	async get(filter: Record<string, any> = {}) {
-		return this.prisma.expenseDayGraph.findMany({
-			where: filter,
+		return this.prisma.expenseDateGraph.findMany({
+			where: filter
 		})
 	}
 
 	async getById(id: string) {
-		return this.prisma.expenseDayGraph.findUnique({
+		return this.prisma.expenseDateGraph.findUnique({
 			where: { id }
 		})
 	}
 
-
-	async create(dto: any): Promise<ExpenseDayGraph> {
+	async create(dto: ExpenseDateGraph): Promise<ExpenseDateGraph> {
 		try {
-			return await this.prisma.expenseDayGraph.create({
+			return await this.prisma.expenseDateGraph.create({
 				data: dto
 			})
 		} catch (error) {
@@ -41,7 +39,7 @@ export class ExpenseDayGraphRepository {
 	}
 
 	async updateMany(filter: Record<string, any>, data: any) {
-		return this.prisma.expenseDayGraph.updateMany({
+		return this.prisma.expenseDateGraph.updateMany({
 			where: filter,
 			data: {
 				...data
@@ -49,8 +47,8 @@ export class ExpenseDayGraphRepository {
 		})
 	}
 
-	async patch(id: string, data: Partial<ExpenseDayGraph>) {
-		return this.prisma.expenseDayGraph.update({
+	async patch(id: string, data: Partial<ExpenseDateGraph>) {
+		return this.prisma.expenseDateGraph.update({
 			where: {
 				id
 			},
@@ -59,8 +57,8 @@ export class ExpenseDayGraphRepository {
 	}
 
 	async delete(id: string) {
-		return this.prisma.expenseDayGraph.delete({
+		return this.prisma.expenseDateGraph.delete({
 			where: { id }
 		})
 	}
-}
+} 

@@ -9,16 +9,6 @@ import {
 } from 'class-validator';
 
 export class TaskDayGraphDto {
-  @IsOptional()
-  @IsISO8601()
-  @ApiProperty()
-  readonly createdAt?: Date;
-
-  @IsOptional()
-  @IsISO8601()
-  @ApiProperty()
-  readonly updatedAt?: Date;
-
   @IsInt()
   @ApiProperty()
   @IsNotEmpty()
@@ -42,7 +32,8 @@ export class TaskDayGraphDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  readonly endpoint: string
+  readonly ownerId: string;
+
 }
 
 

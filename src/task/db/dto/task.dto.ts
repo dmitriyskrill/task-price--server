@@ -10,16 +10,13 @@ export class TaskDto {
   @ApiProperty()
   shortName: string
 
-	@IsBoolean()
-	@IsOptional()
-  @ApiProperty()
-	isCompleted: boolean
+	@IsString()
+	@ApiProperty()
+	ownerId: string
 
 	@IsString()
-	@IsOptional()
-  @ApiProperty()
-	createdAt?: string
-
+	@ApiProperty()
+	description: string
 }
 
 export class UpdateTaskDto {
